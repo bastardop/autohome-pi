@@ -168,6 +168,22 @@ $(document).ready(function() {
       </tr>
     </tbody>
     </table>
+
+ <h3 class="demo-panel-title">Wetter</h3>
+    <table class="table table-bordered table-striped font-big" id="no-more-tables">
+    <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Sender ID</th>
+                   <th>Channel ID</th>
+		    <th class="span2"></th>
+                  </tr>
+                </thead>
+    <tbody>
+      [WEATHERTABLE]
+</tbody>
+</table>
+
     
     <h3 class="demo-panel-title">Scheduler</h3>
     <table class="table table-bordered table-striped font-big" id="no-more-tables">

@@ -10,6 +10,7 @@ class Home
 
     $this->app->Nav->AddPage('home');
     $this->app->Nav->AddAction('list', 'HomeList');
+    $this->app->Nav->AddAction('weather', 'HomeWeather');
     $this->app->Nav->AddAction('settings', 'HomeSettings');
     $this->app->Nav->AddAction('help', 'HomeHelp');
     $this->app->Nav->DefaultAction('list');
@@ -100,6 +101,29 @@ class Home
                         <td><a gpio-name=\"{$gpios[$i]['name']}\" gpio-id=\"{$gpios[$i]['gpio']}\" href=\"#\" class=\"gpio_delete btn btn-large btn-block btn-danger\" style=\"float:none;\"><span class=\"fui-cross-16\"></span></a></td></tr>";
     }
     $this->app->Tpl->Set('GPIOTABLE', $gpio_table);
+
+// ### WETTER Settings ###
+try {
+$db = new PDO('sqlite:/var/www/liteadmin/weather');
+$db->setAttribute(PDO::ATTR_ERRMODE,
+                 PDO::ERRMODE_EXCEPTION);
+$result = $db->query('SELECT * FROM location');
+
+
+   $weather_table .= '';
+    foreach($result as $row) {
+      $weather_table .= "<tr><td>{$row['name']}</td>
+                        <td>{$row['sender_id']}</td>
+			<td>{$row['channel_id']}</td></tr>";
+                      }
+   // $weather_out = "<ul class=\"buttonlist\">{$weather_out}</ul>";
+
+$db = null;
+}
+catch(PDOException $e) {
+$weater_table = $e->getMessage();
+}
+  $this->app->Tpl->Set('WEATHERTABLE', $weather_table);
     
     // ### Scheduler ###
     $schedules = ParseSchedules($data);
@@ -139,13 +163,65 @@ class Home
     $this->app->Tpl->Set('MENUSETTINGS', 'class="active"');
     $this->app->Tpl->Parse('PAGE', 'home_settings.tpl');
   }
-  
+   // ### HELP ###
   function HomeHelp()
   {
     
     $this->app->Tpl->Set('MENUHELP', 'class="active"');
     $this->app->Tpl->Parse('PAGE', 'home_help.tpl');
   }
+    // ### WEATHER ###
+  function HomeWeather()
+  {
+
+try {
+$db = new PDO('sqlite:/var/www/liteadmin/weather');
+$db->setAttribute(PDO::ATTR_ERRMODE,
+                  PDO::ERRMODE_EXCEPTION);
+$places = $db->query('SELECT * FROM location');
+
+foreach($places as $place) {
+
+
+$result = $db->query('SELECT * FROM data WHERE sender_id ='.$place['sender_id'].' AND channel_id='.$place['channel_id'].' ORDER BY key DESC LIMIT 1');
+
+    $weather_out .= '';
+    foreach($result as $row) {
+      $weather_out .= "<li>
+                        <div class=\"button socket\">
+                          <div class=\"button_text\">{$place['name']}</div>                          
+			 <div class=\"humi\" >{$row['humi']}%</div>
+			  <div class=\"temp\" >{$row['temp']}° </div>
+                           
+                        </div>
+                       </li>";
+    }}
+$pitemp = shell_exec('vcgencmd measure_temp');
+$pitemp = substr($pitemp, 5,4);
+ $weather_out .= "<li>
+                        <div class=\"button socket\">
+                          <div class=\"button_text\">Pi CPU</div>                          
+                         
+                          <div class=\"temp\" >{$pitemp}° </div>
+                           
+                        </div>
+                       </li>";
+
+
+    $weather_out = "<ul class=\"buttonlist\">{$weather_out}</ul>";
+
+$db = null;
+}
+catch(PDOException $e) {
+$weater_out = $e->getMessage();
+}
+
+$this->app->Tpl->Set('WEATHER', $weather_out);
+
+    $this->app->Tpl->Set('MENUWEATHER', 'class="active"');
+    $this->app->Tpl->Parse('PAGE', 'home_weather.tpl');
+  }
+
   
 }
 ?>

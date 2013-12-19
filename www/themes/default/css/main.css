@@ -80,13 +80,13 @@ ul.buttonlist li {
   font-size: 20px;
 }
 
-.button_text, .button_on, .button_off {
+.button_text, .button_on, .button_off, .temp, .humi{
   display: inline-block;
   padding-top: 13px;
   padding-bottom: 12px;
 }
 
-.button_on, .button_off {
+.button_on, .button_off, .temp, .humi{
   float: right;
   min-width: 55px;
   max-width: 100px;
@@ -98,7 +98,7 @@ ul.buttonlist li {
   background-color: #34495e;
 }
 
-.button_off {
+.button_off, .humi{
   margin-left:10px;
 }
 
