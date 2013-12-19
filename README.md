@@ -11,3 +11,19 @@ The next step is to combine these software sets so that they can work together a
 
 Requirements
 ============
+
+At the moment this software requires the following other software
+
+Software
+--------
+- wiringPi ( http://www.wiringpi.com )
+- nginx (or any oher webserver on your raspberry)
+- sqlite3
+
+Hardware
+--------
+- RaspberryPi
+- DHT11 or DTH22 sensor
+- 433MHz reciever and transciever
+- Conrad WH9010 Temprature Sensor
+- 433MHz remote controll socket
