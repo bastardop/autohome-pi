@@ -8,3 +8,6 @@ To add functions about temperature and humidity i found a code block from Rahul 
 For receiving 433Mhz signals i finally found the software for Ninja Blocks / rd-switch.
 The next step is to combine these software sets so that they can work together an present everything on a web interface.
 
+
+Requirements
+============
