@@ -37,6 +37,7 @@ using namespace std;
 string code;
 string binary;
 vector<string> acode;
+vector<string> tempdata;
 
 int crossing = 10;
 int end = 100;
@@ -96,7 +97,23 @@ int between(int v, int a, int b) {
 	else
 		return 0;
 }
+void makebin(){
+	int i=0;
+	for(i=0;i<acode.size();++i) {
+		if(atoi(acode[i].c_str()) > 10 && atoi(acode[i].c_str()) < 39){
+			binary.append("0"); } else if (atoi(acode[i].c_str()) > 39) {
+			binary.append("1"); }
+		}
+	}
 
+void makedata(){
+	tempdata.push_back(binary[0]);
+	tempdata.push_back(binary[1]);
+	tempdata.push_back(reverse(binary[2].begin(), binary[2].end()));
+        tempdata.push_back(reverse(binary[3].begin(), binary[3].end()));
+
+
+}
 void createBinaryString(int cutoff) {
 	int a = 0;
 	string id;
@@ -252,7 +269,7 @@ int main(int argc, char **argv) {
 				case 133:
 					type = 1;
 				break;
-				case 149:
+				case 73:
 					type = 2;
 				break;
 				case 51:
@@ -270,7 +287,11 @@ int main(int argc, char **argv) {
 					x = 7;
 				if(type == 2)
 					x = 11;
-				createBinaryString(0);
+				//createBinaryString(0);
+				makebin();
+				makedata();
+				cout << binary << endl;
+				cout << "chanel" << tempdata[1] << endl << "temp" << tempdata[2] << endl << "humi" << tempdata[3] yy endl;
 				if(debug == 1) {
 					cout << "Binary length:\t" << binary.length() << endl;
 					cout << "Binary:\t" << binary << endl;
@@ -300,8 +321,8 @@ int main(int argc, char **argv) {
 				
 					if(debug == 1) {
 						showBinaryString();
-						//cout << code << endl;
-						//cout << code.length() << endl;
+						cout << code << endl;
+						cout << code.length() << endl;
 					}
 					
 					if(type == 1 || type == 2) {
@@ -329,16 +350,16 @@ int main(int argc, char **argv) {
 						usleep(5000);
 					}
 				}	
-			}/*else if(debug == 1) {
-				acode = explode(code,';');
-				x=0;
+			}else if(debug == 1) {
+				//acode = explode(code,';');
+				//x=0;
 				if((int)acode.size() > 8) {
 					showBinaryString();
 					cout << code << endl;
 				}
 				cout << code.length() << endl;
 				code.clear();
-			}*/
+			}
 			type = 0;
 			binary.clear();
 			code.clear();
