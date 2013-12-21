@@ -1,6 +1,6 @@
 # Mac stuff 
 .DS_Store
-.~lock
+.~lock.*
 
 # Compiled Object files
 *.slo
