@@ -1,4 +1,9 @@
 /*	
+	Original Code from CurlyMo (int main () )
+
+	function for interpreting signals from Conrad KW9010 from BastardOp
+
+
 	Copyright 2012 CurlyMo
 	
 	This file is part of the Raspberry Pi 433.92Mhz transceiver.
@@ -21,31 +26,32 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <getopt.h>
-#include <unistd.h>
+//#include <getopt.h>
+//#include <unistd.h>
 #include <ctype.h>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
-#include <bitset>
-#include <limits>
+//#include <bitset>
+//#include <limits>
 #include <time.h>
+#include <algorithm>
+#include <iterator>
 
 using namespace std;
 
 string code;
-string binary;
+string push;
+vector<string> bin;
 vector<string> acode;
 vector<string> tempdata;
 
-int crossing = 10;
-int end = 100;
-int marge = 5;
-int start = 30;
 int speed = 50;
+int end = 100;
+int start = 30;
+int marge = 5;
 int debug = 0;
-int x = 0;
 int bit = 2;
 int type = 0;
 int noendl = 0;
@@ -87,118 +93,37 @@ vector<string> explode( const string &delimiter, const string &str)
     return arr;
 }
 
-unsigned long getBinary(int s, int e) {
-	return bitset<numeric_limits<unsigned long>::digits>(binary.substr(s,(e-s))).to_ulong();
-}
-
-int between(int v, int a, int b) {
-	if(v > a-b && v < a+b)
-		return 1;
-	else
-		return 0;
-}
 void makebin(){
 	int i=0;
 	for(i=0;i<acode.size();++i) {
 		if(atoi(acode[i].c_str()) > 10 && atoi(acode[i].c_str()) < 39){
-			binary.append("0"); } else if (atoi(acode[i].c_str()) > 39) {
-			binary.append("1"); }
+			bin.push_back ("0");
+		} else if (atoi(acode[i].c_str()) > 39) {
+			bin.push_back ("1");
 		}
 	}
+
+}
+
+void binaryParts(int start, int stop) {
+	int i=0;
+	push = "";
+	for(i=start;i<=stop;++i){
+		push.append(bin[i]);
+	}
+}
 
 void makedata(){
-	tempdata.push_back(binary[0]);
-	tempdata.push_back(binary[1]);
-	tempdata.push_back(reverse(binary[2].begin(), binary[2].end()));
-        tempdata.push_back(reverse(binary[3].begin(), binary[3].end()));
-
-
-}
-void createBinaryString(int cutoff) {
-	int a = 0;
-	string id;
-	int record  = 0;
-	for(a=0;a<(int)acode.size();a+=4) {
-		if(atoi(acode[a+bit].c_str()) > crossing) {
-			if((record == 1 && cutoff == 1) || cutoff == 0)
-				binary.append("0");
-		} else if(atoi(acode[a+bit].c_str()) < crossing) {
-			record = 1;
-			binary.append("1");
-		}
-	}
-}
-
-void createReverseBinaryString(int cutoff) {
-	int a = 0;
-	string id;
-	int record  = 0;
-	for(a=0;a<(int)acode.size();a+=4) {
-		if(atoi(acode[a+bit].c_str()) > crossing) {
-			record = 1;
-			binary.append("1");
-		} else if(atoi(acode[a+bit].c_str()) < crossing) {
-			if((record == 1 && cutoff == 1) || cutoff == 0)
-				binary.append("0");
-		}
-	}
-}
-
-void showBinaryString() {
-	cout << binary << endl;
-}
-
-void getUniqueId() {
-	if(noendl == 0)
-		cout << "ID:\t\t" << getBinary(0,(int)binary.length()-x) << endl;
-	else
-		cout << "ID:\t\t" << getBinary(0,(int)binary.length()-x) << "\t";
-}
-
-void getAllOrSingle() {
-	if(noendl == 0) {
-		if((int)getBinary((int)binary.length()-x,(int)binary.length()-(x-1)) == 0) {
-			cout << "All/Single:\tSingle" << endl;
-		} else {
-			cout << "All/Single:\tAll" << endl;
-		}
-	} else {
-		if((int)getBinary((int)binary.length()-x,(int)binary.length()-(x-1)) == 0) {
-			cout << "All/Single:\tSingle\t";
-		} else {
-			cout << "All/Single:\tAll\t";
-		}
-	}
-}
-
-void getOnOff() {
-	if(noendl == 0) {
-		if((int)getBinary((int)binary.length()-(x-1),(int)binary.length()-(x-2)) == 1) {
-			cout << "On/Off:\t\tON" << endl;
-		} else {
-			cout << "On/Off:\t\tOFF" << endl;
-		}
-	} else {
-		if((int)getBinary((int)binary.length()-(x-1),(int)binary.length()-(x-2)) == 1) {
-			cout << "On/Off:\t\tON\t";
-		} else {
-			cout << "On/Off:\t\tOFF\t";
-		}	
-	}
-}
-
-void getUnitId() {
-	if(noendl == 0)
-		cout << "Unit:\t\t" << getBinary((int)binary.length()-(x-3),(int)binary.length()-(x-6)) << endl;
-	else
-		cout << "Unit:\t\t" << getBinary((int)binary.length()-(x-3),(int)binary.length()-(x-6)) << "\t";
-}
-
-void getDimLevel() {
-	if(noendl == 0)
-		cout << "Dimmed:\t\t" << (((getBinary((int)binary.length()-(x-6),(int)binary.length()-(x-10))+1)*100)/16) << "%" << endl;
-	else
-		cout << "Dimmed:\t\t" << (((getBinary((int)binary.length()-(x-6),(int)binary.length()-(x-10))+1)*100)/16) << "%\t";
+	binaryParts(0,3);
+	tempdata.push_back (push);
+	binaryParts(4,5);
+        tempdata.push_back (push);
+	binaryParts(12,23);
+	reverse(push.begin(), push.end());
+        tempdata.push_back (push);
+	binaryParts(24,30);
+        reverse(push.begin(), push.end());
+        tempdata.push_back (push);
 }
 
 int main(int argc, char **argv) { 
@@ -266,15 +191,8 @@ int main(int argc, char **argv) {
 			}
 			
 			switch((int)acode.size()) {
-				case 133:
-					type = 1;
-				break;
 				case 73:
 					type = 2;
-				break;
-				case 51:
-					type = 3;
-					bit = 3;
 				break;
 				default:
 					type = 0;
@@ -283,90 +201,47 @@ int main(int argc, char **argv) {
 			
 			if(type > 0) {
 				
-				if(type == 1)
-					x = 7;
-				if(type == 2)
-					x = 11;
-				//createBinaryString(0);
-				makebin();
-				makedata();
-				cout << binary << endl;
-				cout << "chanel" << tempdata[1] << endl << "temp" << tempdata[2] << endl << "humi" << tempdata[3] yy endl;
-				if(debug == 1) {
-					cout << "Binary length:\t" << binary.length() << endl;
-					cout << "Binary:\t" << binary << endl;
-				}
-				switch((int)binary.length()) {
-					case 34:
-						type = 1;
-					break;
-					case 38:
-						type = 2;
-					break;
-					case 13:
-						type = 3;
-					break;
-					default:
-						type = 0;
-					break;
-				}
-				binary.clear();
-				if(type == 1 || type == 2) {
-					createBinaryString(1);
-				} else if(type == 3) {
-					createBinaryString(0);
-				}
-				
-				if((int)binary.length() >= x) {
-				
+				if(type == 2){
+					makebin();
 					if(debug == 1) {
-						showBinaryString();
-						cout << code << endl;
-						cout << code.length() << endl;
+						cout << "Binary length:\t" << bin.size() << endl;
+						cout << "Binary:\t";
+						copy(bin.begin(), bin.end(), ostream_iterator<string>(cout, " "));
+						cout << endl;
 					}
-					
-					if(type == 1 || type == 2) {
-						if(noendl == 0)
-							printf("Klik Aan Klik Uit\n");
-						getUniqueId();
-						getAllOrSingle();
-							if(type == 1)
-							getOnOff();
-						getUnitId();
-						if(type == 2)
-							getDimLevel();
-						if(noendl == 1)
-							cout << endl;
-						usleep(5000);
-					} else if(type == 3) {
-						printf("Elro\n");
-						binary = string(binary.rbegin(), binary.rend());
-						cout << "ID:\t\t" << (int)getBinary(3,8) << endl;
-						cout << "House:\t\t" << (int)getBinary(8,13) << endl;
-						if((int)getBinary(1,3) == 1)
-							cout << "On/Off:\t\tOn" << endl;
-						else if((int)getBinary(1,3) == 2)
-							cout << "On/Off:\t\tOff" << endl;
-						usleep(5000);
+					switch((int)bin.size()) {
+						case 36:
+							type = 1;
+						break;
+						default:
+							type = 0;
+						break;
 					}
+
+					if(type == 1) {
+						makedata();
+						cout << "id " << tempdata[0] << endl;
+                                		cout << "channel " << tempdata[1] << endl;
+                                		cout << "temp " << tempdata[2] << endl;
+                                		cout << "humi " << tempdata[3] << endl;
+					} 
+				
 				}	
 			}else if(debug == 1) {
 				//acode = explode(code,';');
 				//x=0;
 				if((int)acode.size() > 8) {
-					showBinaryString();
 					cout << code << endl;
 				}
 				cout << code.length() << endl;
 				code.clear();
 			}
 			type = 0;
-			binary.clear();
+			bin.clear();
 			code.clear();
 			acode.clear();							
 			one=0;
 			zero=0;
-			x=0;
 		}
 	}
 }
