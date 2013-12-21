@@ -43,11 +43,13 @@ using namespace std;
 
 string code;
 string push;
+
 vector<string> bin;
 vector<string> acode;
 vector<string> tempdata;
 vector<string> ccode;
 
+float pushed;
 long int wert = 0;
 int speed = 50;
 int end = 100;
@@ -62,6 +64,47 @@ string itos(int i) {
     ostringstream s;
     s << i;
     return s.str();
+}
+
+
+void makebin(){
+	int i=0;
+	for(i=0;i<acode.size();++i) {
+		if(atoi(acode[i].c_str()) > 10 && atoi(acode[i].c_str()) < 39){
+			bin.push_back ("0");
+		} else if (atoi(acode[i].c_str()) > 39) {
+			bin.push_back("1");
+		}
+	}
+
+}
+
+void binaryParts(int start, int stop) {
+	int i=0;
+	push="" ;
+	for(i=start;i<=stop;++i){
+		push.append(bin[i]);
+	}
+}
+
+void makedata(){
+	binaryParts(0,3);
+	tempdata.push_back (push);
+	
+	binaryParts(4,5);
+        tempdata.push_back (push);
+	
+	binaryParts(12,23);
+	reverse(push.begin(), push.end());
+	tempdata.push_back (push);
+	pushed = stoi(push,nullptr,2);        
+	tempdata.push_back (to_string(pushed/10));
+	
+	binaryParts(24,30);
+        reverse(push.begin(), push.end());
+        tempdata.push_back (push);
+	pushed = stoi(push,nullptr,2);        
+        tempdata.push_back (to_string(pushed-28));
 }
 
 vector<string> explode( const string &delimiter, const string &str)
@@ -95,48 +138,7 @@ vector<string> explode( const string &delimiter, const string &str)
     return arr;
 }
 
-void clearcode(){
- int i=0;
-//        for(i=0;i<acode.size();++i) {
-  //              if(atoi(acode[i].c_str()) > 5){
-    //                    ccode.push_back (acode[i].c_str());
-      //          }
-//}
-        }
 
-
-void makebin(){
-	int i=0;
-	for(i=0;i<acode.size();++i) {
-		if(atoi(acode[i].c_str()) > 10 && atoi(acode[i].c_str()) < 39){
-			bin.push_back ("0");
-		} else if (atoi(acode[i].c_str()) > 39) {
-			bin.push_back("1");
-		}
-	}
-
-}
-
-void binaryParts(int start, int stop) {
-	int i=0;
-	push = "";
-	for(i=start;i<=stop;++i){
-		push.append(bin[i]);
-	}
-}
-
-void makedata(){
-	binaryParts(0,3);
-	tempdata.push_back (push);
-	binaryParts(4,5);
-        tempdata.push_back (push);
-	binaryParts(12,23);
-	reverse(push.begin(), push.end());
-        tempdata.push_back (push);
-	binaryParts(24,30);
-        reverse(push.begin(), push.end());
-        tempdata.push_back (push);
-}
 
 int main(int argc, char **argv) { 
 	int pin_in = 2;
@@ -145,65 +147,12 @@ int main(int argc, char **argv) {
 	int zero = 0;
 	int opt = 0;
 	//int noCalc = 0;
-	
-	if(wiringPiSetup() == -1)
-		return 0;
-	piHiPri(99);
-	pinMode(pin_in, INPUT);
 	printf("Start\n");
-	
-	while((opt = getopt(argc, argv, "s:dc")) != -1) {
-		switch(opt) {
-			case 's':
-				speed = atoi(optarg);
-				//noCalc = 1;
-			break;
-			case 'd':
-				debug = 1;
-			break;
-			case 'c':
-				noendl = 1;
-			break;
-			default:
-				exit(EXIT_FAILURE);
-		}
-	}
 
-	while(1) {
-		usleep(speed);
-		if(digitalRead(pin_in) == 1) {
-			one++;
-			 if(read == 1 && zero > 0) {
-					code.append(itos(zero));
-					code.append(";");
-			}
-			zero=0;
-		}
-		if(digitalRead(pin_in) == 0) {
-			zero++;
-			if(read == 1 && one > 0) {
-					code.append(itos(one));
-					code.append(";");
-			}
-			one=0;
-		}
-		if((zero >= (start-marge)) && (zero <= (start+marge)) && read == 0) {
-			read = 1;			
-			zero = 0;
-			one = 0;
-		}
-		
-		if(read == 1 && zero >= end) {
-			read=0;
-			
+code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26;6;25;5;54;5;55;5;26;5;26;6;54;5;26;5;24;5;24;5;24;5;25;5;25;6;52;5;26;5;27;6;58;6;57;5;55;5;26;5;54;6;51;5;";
+	
 			acode = explode(";",code);
-			if(debug == 1) {
-				clearcode();
 				cout << "Code length:\t" << acode.size() << endl;
-				cout << "Code length:\t" << code << endl;
-	//copy(ccode.begin(), ccode.end(), ostream_iterator<string>(cout, ";"));
-cout << endl;		
-	}
 			
 			switch((int)acode.size()) {
 				case 73:
@@ -236,19 +185,13 @@ cout << endl;
 						makedata();
 						cout << "id " << tempdata[0] << endl;
                                 		cout << "channel " << tempdata[1] << endl;
-                                		cout << "temp " << tempdata[2] << endl;
-                                		cout << "humi " << tempdata[3] << endl;
+						cout << "temp bin " <<tempdata[2] << endl;                                		
+						cout << "temp " << tempdata[3] << endl;
+                                		cout << "humi bin " << tempdata[4] << endl;
+						cout << "humi " << tempdata[5] << endl;
 					} 
 				
 				}	
-			}else if(debug == 1) {
-				//acode = explode(code,';');
-				//x=0;
-//				if((int)acode.size() > 8) {
-//					cout << code << endl;
-//				}
-//				cout << code.length() << endl;
-				code.clear();
 			}
 			type = 0;
 			bin.clear();
@@ -257,6 +200,6 @@ cout << endl;
 			one=0;
 			ccode.clear();
 			zero=0;
-		}
-	}
+		
+	
 }
