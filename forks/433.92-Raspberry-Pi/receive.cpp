@@ -26,15 +26,15 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include <getopt.h>
-//#include <unistd.h>
+#include <getopt.h>
+#include <unistd.h>
 #include <ctype.h>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
-//#include <bitset>
-//#include <limits>
+#include <bitset>
+#include <limits>
 #include <time.h>
 #include <algorithm>
 #include <iterator>
@@ -148,14 +148,14 @@ void makedata(){
 	binaryParts(11,22);
 	reverse(push.begin(), push.end());
 	tempdata.push_back (push);
-	pushed = stoi(push,nullptr,2);
-	tempdata.push_back (to_string(pushed/10));
+//	pushed = stoi(push,nullptr,2);
+//	tempdata.push_back (to_string(pushed/10));
 	
 	binaryParts(23,29);
     reverse(push.begin(), push.end());
     tempdata.push_back (push);
-	pushed = stoi(push,nullptr,2);
-    tempdata.push_back (to_string(pushed-28));
+//	pushed = stoi(push,nullptr,2);
+//    tempdata.push_back (to_string(pushed-28));
 }
 
 int main(int argc, char **argv) {
@@ -229,9 +229,9 @@ cout << endl;
 				case 73:
 					type = 2;
 				break;
-                case 72:
-                    type = 2
-                    break;
+		                case 72:
+                			    type = 2;
+                   		 break;
 				default:
 					type = 0;
 				break;
@@ -249,8 +249,8 @@ cout << endl;
 					switch((int)bin.size()) {
 						case 35:
 							type = 1;
-                            break;
-                        case 36:
+				                            break;
+                       				 case 36:
 							type = 1;
 						break;
 						default:
@@ -266,10 +266,10 @@ cout << endl;
                             cout << "different sender" << endl;
                             cout << "id " << tempdata[0] << endl;
                             cout << "channel " << tempdata[1] << endl;
-                            cout << "temp bin " <<tempdata[2] << endl;
-                            cout << "temp " << tempdata[3] << endl;
-                            cout << "humi bin " << tempdata[4] << endl;
-                            cout << "humi " << tempdata[5] << endl;
+//                            cout << "temp bin " <<tempdata[2] << endl;
+                            cout << "temp " << tempdata[2] << endl;
+  //                          cout << "humi bin " << tempdata[4] << endl;
+                            cout << "humi " << tempdata[3] << endl;
                             old_id = tempdata[0];
                             old_channel = tempdata[1];
                             old_time = new_time;
