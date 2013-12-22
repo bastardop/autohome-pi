@@ -1,11 +1,14 @@
-# Mac stuff 
-.DS_Store
-.~lock.*
+
 
 # Compiled Object files
 *
 !*.*
 !Makefile
+
+# Mac stuff 
+.DS_Store
+.~lock.*
+
 *.slo
 *.lo
 *.o
