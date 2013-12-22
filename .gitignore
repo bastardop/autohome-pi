@@ -5,6 +5,7 @@
 # Compiled Object files
 *
 !*.*
+!Makefile
 *.slo
 *.lo
 *.o
