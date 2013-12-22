@@ -3,6 +3,8 @@
 .~lock.*
 
 # Compiled Object files
+*
+!*.*
 *.slo
 *.lo
 *.o
