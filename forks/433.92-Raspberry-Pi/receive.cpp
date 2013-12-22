@@ -39,6 +39,7 @@
 #include <algorithm>
 #include <iterator>
 #include <time.h>
+#include <iomanip>
 
 
 using namespace std;
@@ -149,9 +150,14 @@ void makedata(){
 	binaryParts(12,23);
 	reverse(push.begin(), push.end());
 	tempdata.push_back (push);
-    push = (float)((int)(push*100))/100;
 	pushed = stoi(push,nullptr,2);
-	tempdata.push_back (to_string(pushed/10));
+	string l_string;
+stringstream oss;
+pushed = pushed/10;
+oss << setprecision(3) << pushed;
+l_string=oss.str();
+	
+	tempdata.push_back (l_string);
 	
 	binaryParts(24,30);
     reverse(push.begin(), push.end());
