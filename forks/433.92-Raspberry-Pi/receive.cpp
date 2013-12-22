@@ -57,7 +57,7 @@ time_t new_time;
 float pushed;
 long int wert = 0;
 int speed = 50;
-int end = 100;
+int ende = 100;
 int start = 30;
 int marge = 5;
 int debug = 0;
@@ -109,7 +109,7 @@ vector<string> explode( const string &delimiter, const string &str)
 }
 
 void clearcode(){
- int i=0;
+// int i=0;
 //        for(i=0;i<acode.size();++i) {
   //              if(atoi(acode[i].c_str()) > 5){
     //                    ccode.push_back (acode[i].c_str());
@@ -139,23 +139,26 @@ void binaryParts(int start, int stop) {
 }
 
 void makedata(){
-	binaryParts(0,2);
+tempdata.clear();
+//cout << "output before push " << tempdata[1] << endl;
+	binaryParts(0,3);
 	tempdata.push_back (push);
 	
-	binaryParts(3,4);
+	binaryParts(4,5);
     tempdata.push_back (push);
-	
-	binaryParts(11,22);
+//cout << "makedata push " << push << endl;	
+//cout <<"makedata tempdata " << tempdata[1] << endl;
+	binaryParts(12,23);
 	reverse(push.begin(), push.end());
 	tempdata.push_back (push);
-//	pushed = stoi(push,nullptr,2);
-//	tempdata.push_back (to_string(pushed/10));
+	pushed = stoi(push,nullptr,2);
+	tempdata.push_back (to_string(pushed/10));
 	
-	binaryParts(23,29);
+	binaryParts(24,30);
     reverse(push.begin(), push.end());
     tempdata.push_back (push);
-//	pushed = stoi(push,nullptr,2);
-//    tempdata.push_back (to_string(pushed-28));
+	pushed = stoi(push,nullptr,2);
+    tempdata.push_back (to_string(pushed-28));
 }
 
 int main(int argc, char **argv) {
@@ -213,7 +216,7 @@ int main(int argc, char **argv) {
 			one = 0;
 		}
 		
-		if(read == 1 && zero >= end) {
+		if(read == 1 && zero >= ende) {
 			read=0;
 			
 			acode = explode(";",code);
@@ -262,18 +265,31 @@ cout << endl;
 						makedata();
                         time(&new_time);
                         diff_time = difftime(new_time, old_time);
-                        if (old_id != tempdata[0] && old_channel != tempdata[1]) {
+cout << "diff time " << diff_time << endl;
+cout << "bin size " << bin.size() << endl;
+//copy(bin.begin(), bin.end(), ostream_iterator<string>(cout));
+
+//cout << endl;
+//			cout << "tempdata1 " << tempdata[1] << endl;
+//cout <<" old channel 1 " << old_channel << endl;
+                        if (tempdata[1] != old_channel) {
                             cout << "different sender" << endl;
                             cout << "id " << tempdata[0] << endl;
                             cout << "channel " << tempdata[1] << endl;
-//                            cout << "temp bin " <<tempdata[2] << endl;
-                            cout << "temp " << tempdata[2] << endl;
-  //                          cout << "humi bin " << tempdata[4] << endl;
-                            cout << "humi " << tempdata[3] << endl;
+                            cout << "temp bin " <<tempdata[2] << endl;
+                            cout << "temp " << tempdata[3] << endl;
+                            cout << "humi bin " << tempdata[4] << endl;
+                            cout << "humi " << tempdata[5] << endl;
                             old_id = tempdata[0];
                             old_channel = tempdata[1];
+//			cout << "old channel " << old_channel << endl;
                             old_time = new_time;
-                            
+//tempdata[1] = "00";
+//			                            tempdata.clear();
+//				bin.clear();
+//				type = 0;
+//				code.clear();
+//				acode.clear();
                         } else if (diff_time > 10) {
                             
                             cout << "different time" << endl;
@@ -284,8 +300,11 @@ cout << endl;
                             cout << "humi bin " << tempdata[4] << endl;
                             cout << "humi " << tempdata[5] << endl;
                             old_id = tempdata[0];
-                            old_channel = tempdata[1];
+                            //old_channel = tempdata[1];
                             old_time = new_time;
+			 //  tempdata.clear();
+
+
                         }
                     }
 				
