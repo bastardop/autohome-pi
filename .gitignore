@@ -1,9 +1,5 @@
 
-
 # Compiled Object files
-*
-!*.*
-!Makefile
 
 # Mac stuff 
 .DS_Store
