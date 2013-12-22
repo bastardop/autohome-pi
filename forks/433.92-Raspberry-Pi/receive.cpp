@@ -287,6 +287,7 @@ cout << endl;
                             old_channel = tempdata[1];
                             old_time = new_time;
                         }
+                    }
 				
 				}	
 			}else if(debug == 1) {
