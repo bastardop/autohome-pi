@@ -23,7 +23,7 @@
 	<http://www.gnu.org/licenses/>
 */
 
-#include <wiringPi.h>
+//#include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
 //#include <getopt.h>
@@ -38,6 +38,7 @@
 #include <time.h>
 #include <algorithm>
 #include <iterator>
+#include <time.h>
 
 using namespace std;
 
@@ -49,6 +50,9 @@ vector<string> acode;
 vector<string> tempdata;
 vector<string> ccode;
 
+time_t old_time;
+time_t new_time;
+
 float pushed;
 long int wert = 0;
 int speed = 50;
@@ -59,6 +63,11 @@ int debug = 0;
 int bit = 2;
 int type = 0;
 int noendl = 0;
+
+double diff_time;
+
+string old_id;
+string old_channel;
 
 string itos(int i) {
     ostringstream s;
@@ -88,19 +97,19 @@ void binaryParts(int start, int stop) {
 }
 
 void makedata(){
-	binaryParts(0,3);
+	binaryParts(0,2);
 	tempdata.push_back (push);
 	
-	binaryParts(4,5);
+	binaryParts(3,4);
         tempdata.push_back (push);
 	
-	binaryParts(12,23);
+	binaryParts(11,22);
 	reverse(push.begin(), push.end());
 	tempdata.push_back (push);
 	pushed = stoi(push,nullptr,2);        
 	tempdata.push_back (to_string(pushed/10));
 	
-	binaryParts(24,30);
+	binaryParts(23,29);
         reverse(push.begin(), push.end());
         tempdata.push_back (push);
 	pushed = stoi(push,nullptr,2);        
@@ -157,6 +166,9 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
 			switch((int)acode.size()) {
 				case 73:
 					type = 2;
+                break;
+                case 72:
+                    type = 2
 				break;
 				default:
 					type = 0;
@@ -173,9 +185,12 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
 						cout << endl;
 					}
 					switch((int)bin.size()) {
-						case 36:
+						case 35:
 							type = 1;
 						break;
+                        case 36:
+                            type = 1;
+                        break;
 						default:
 							type = 0;
 						break;
@@ -183,13 +198,35 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
 
 					if(type == 1) {
 						makedata();
-						cout << "id " << tempdata[0] << endl;
-                                		cout << "channel " << tempdata[1] << endl;
-						cout << "temp bin " <<tempdata[2] << endl;                                		
-						cout << "temp " << tempdata[3] << endl;
-                                		cout << "humi bin " << tempdata[4] << endl;
-						cout << "humi " << tempdata[5] << endl;
-					} 
+                        time(&new_time);
+                        diff_time = difftime(new_time, old_time);
+                        if (old_id != tempdata[0] && old_channel != tempdata[1]) {
+                            cout << "different sender" << endl;
+                            cout << "id " << tempdata[0] << endl;
+                            cout << "channel " << tempdata[1] << endl;
+                            cout << "temp bin " <<tempdata[2] << endl;
+                            cout << "temp " << tempdata[3] << endl;
+                            cout << "humi bin " << tempdata[4] << endl;
+                            cout << "humi " << tempdata[5] << endl;
+                            old_id = tempdata[0];
+                            old_channel = tempdata[1];
+                            old_time = new_time;
+
+                        } else if (diff_time > 10) {
+                            
+                            cout << "different time" << endl;
+                            cout << "id " << tempdata[0] << endl;
+                            cout << "channel " << tempdata[1] << endl;
+                            cout << "temp bin " <<tempdata[2] << endl;
+                            cout << "temp " << tempdata[3] << endl;
+                            cout << "humi bin " << tempdata[4] << endl;
+                            cout << "humi " << tempdata[5] << endl;
+                            old_id = tempdata[0];
+                            old_channel = tempdata[1];
+                            old_time = new_time;
+                        }
+                        
+					}
 				
 				}	
 			}
