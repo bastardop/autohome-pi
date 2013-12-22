@@ -43,9 +43,6 @@
 
 using namespace std;
 
-string code;
-string push;
-
 vector<string> bin;
 vector<string> acode;
 vector<string> tempdata;
@@ -55,20 +52,22 @@ time_t old_time;
 time_t new_time;
 
 float pushed;
+
 long int wert = 0;
-int speed = 50;
+
 int ende = 100;
 int start = 30;
 int marge = 5;
 int debug = 0;
 int bit = 2;
 int type = 0;
-int noendl = 0;
 
 double diff_time;
 
 string old_id;
 string old_channel;
+string code;
+string push;
 
 
 string itos(int i) {
@@ -108,15 +107,16 @@ vector<string> explode( const string &delimiter, const string &str)
     return arr;
 }
 
+/*
 void clearcode(){
-// int i=0;
-//        for(i=0;i<acode.size();++i) {
-  //              if(atoi(acode[i].c_str()) > 5){
-    //                    ccode.push_back (acode[i].c_str());
-      //          }
-//}
+    int i=0;
+    for(i=0;i<acode.size();++i) {
+        if(atoi(acode[i].c_str()) > 5){
+            ccode.push_back (acode[i].c_str());
         }
-
+    }
+}
+*/
 
 void makebin(){
 	int i=0;
@@ -139,18 +139,17 @@ void binaryParts(int start, int stop) {
 }
 
 void makedata(){
-tempdata.clear();
-//cout << "output before push " << tempdata[1] << endl;
+    tempdata.clear();
 	binaryParts(0,3);
 	tempdata.push_back (push);
 	
 	binaryParts(4,5);
     tempdata.push_back (push);
-//cout << "makedata push " << push << endl;	
-//cout <<"makedata tempdata " << tempdata[1] << endl;
+    
 	binaryParts(12,23);
 	reverse(push.begin(), push.end());
 	tempdata.push_back (push);
+    push = (float)((int)(push*100))/100;
 	pushed = stoi(push,nullptr,2);
 	tempdata.push_back (to_string(pushed/10));
 	
@@ -158,7 +157,7 @@ tempdata.clear();
     reverse(push.begin(), push.end());
     tempdata.push_back (push);
 	pushed = stoi(push,nullptr,2);
-    tempdata.push_back (to_string(pushed-28));
+    tempdata.push_back (to_string(int(pushed)-28));
 }
 
 int main(int argc, char **argv) {
@@ -167,7 +166,6 @@ int main(int argc, char **argv) {
 	int one = 0;
 	int zero = 0;
 	int opt = 0;
-	//int noCalc = 0;
 	
 	if(wiringPiSetup() == -1)
 		return 0;
@@ -175,17 +173,10 @@ int main(int argc, char **argv) {
 	pinMode(pin_in, INPUT);
 	printf("Start\n");
 	
-	while((opt = getopt(argc, argv, "s:dc")) != -1) {
+	while((opt = getopt(argc, argv, "d")) != -1) {
 		switch(opt) {
-			case 's':
-				speed = atoi(optarg);
-				//noCalc = 1;
-			break;
 			case 'd':
 				debug = 1;
-			break;
-			case 'c':
-				noendl = 1;
 			break;
 			default:
 				exit(EXIT_FAILURE);
@@ -193,10 +184,12 @@ int main(int argc, char **argv) {
 	}
 
 	while(1) {
-		usleep(speed);
-		if(digitalRead(pin_in) == 1) {
+		usleep(50);
+		
+        if(digitalRead(pin_in) == 1) {
 			one++;
-			 if(read == 1 && zero > 0) {
+		
+            if(read == 1 && zero > 0) {
 					code.append(itos(zero));
 					code.append(";");
 			}
@@ -220,21 +213,23 @@ int main(int argc, char **argv) {
 			read=0;
 			
 			acode = explode(";",code);
-			if(debug == 1) {
-				clearcode();
-				cout << "Code length:\t" << acode.size() << endl;
-				cout << "Code length:\t" << code << endl;
-	//copy(ccode.begin(), ccode.end(), ostream_iterator<string>(cout, ";"));
-cout << endl;		
-	}
+			
+            if(debug == 1) {
+            
+                if(acode.size() > 1) {
+                    cout << "Code length:\t" << acode.size() << endl;
+                    cout << "Code length:\t" << code << endl;
+            
+                }
+            }
 			
 			switch((int)acode.size()) {
 				case 73:
 					type = 2;
 				break;
-		                case 72:
-                			    type = 2;
-                   		 break;
+                case 72:
+                    type = 2;
+                break;
 				default:
 					type = 0;
 				break;
@@ -243,7 +238,8 @@ cout << endl;
 				
 				if(type == 2){
 					makebin();
-					if(debug == 1) {
+					
+                    if(debug == 1) {
 						cout << "Binary length:\t" << bin.size() << endl;
 						cout << "Binary:\t";
 						copy(bin.begin(), bin.end(), ostream_iterator<string>(cout));
@@ -251,9 +247,9 @@ cout << endl;
 					}
 					switch((int)bin.size()) {
 						case 35:
-							type = 1;
-				                            break;
-                       				 case 36:
+							type = 0;
+                        break;
+                        case 36:
 							type = 1;
 						break;
 						default:
@@ -265,13 +261,7 @@ cout << endl;
 						makedata();
                         time(&new_time);
                         diff_time = difftime(new_time, old_time);
-cout << "diff time " << diff_time << endl;
-cout << "bin size " << bin.size() << endl;
-//copy(bin.begin(), bin.end(), ostream_iterator<string>(cout));
-
-//cout << endl;
-//			cout << "tempdata1 " << tempdata[1] << endl;
-//cout <<" old channel 1 " << old_channel << endl;
+                        
                         if (tempdata[1] != old_channel) {
                             cout << "different sender" << endl;
                             cout << "id " << tempdata[0] << endl;
@@ -282,14 +272,8 @@ cout << "bin size " << bin.size() << endl;
                             cout << "humi " << tempdata[5] << endl;
                             old_id = tempdata[0];
                             old_channel = tempdata[1];
-//			cout << "old channel " << old_channel << endl;
                             old_time = new_time;
-//tempdata[1] = "00";
-//			                            tempdata.clear();
-//				bin.clear();
-//				type = 0;
-//				code.clear();
-//				acode.clear();
+                            
                         } else if (diff_time > 10) {
                             
                             cout << "different time" << endl;
@@ -300,11 +284,8 @@ cout << "bin size " << bin.size() << endl;
                             cout << "humi bin " << tempdata[4] << endl;
                             cout << "humi " << tempdata[5] << endl;
                             old_id = tempdata[0];
-                            //old_channel = tempdata[1];
+                            old_channel = tempdata[1];
                             old_time = new_time;
-			 //  tempdata.clear();
-
-
                         }
                     }
 				
