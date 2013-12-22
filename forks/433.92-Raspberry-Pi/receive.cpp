@@ -1,19 +1,16 @@
 /*	
-	Original Code from CurlyMo (int main () )
-
-	function for interpreting signals from Conrad KW9010 from BastardOp
-
-
-	Copyright 2012 CurlyMo
+    Original Code (int main () ) from CurlyMo (2012) as part of the Raspberry Pi 433.92Mhz transceiver
+ 
+    COPYRIGHT bastardp (2013)
 	
-	This file is part of the Raspberry Pi 433.92Mhz transceiver.
+	This file is part of the autohome-pi
 
-    Raspberry Pi 433.92Mhz transceiver is free software: you can redistribute 
+    Autohome-pi is free software: you can redistribute
 	it and/or modify it under the terms of the GNU General Public License as 
 	published by the Free Software Foundation, either version 3 of the License, 
 	or (at your option) any later version.
 
-    Raspberry Pi 433.92Mhz transceiver is distributed in the hope that it will 
+    Autohome-pi is distributed in the hope that it will 
 	be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -140,6 +137,8 @@ void binaryParts(int start, int stop) {
 }
 
 void makedata(){
+    stringstream oss;
+
     tempdata.clear();
 	binaryParts(0,3);
 	tempdata.push_back (push);
@@ -151,13 +150,8 @@ void makedata(){
 	reverse(push.begin(), push.end());
 	tempdata.push_back (push);
 	pushed = stoi(push,nullptr,2);
-	string l_string;
-stringstream oss;
-pushed = pushed/10;
-oss << setprecision(3) << pushed;
-l_string=oss.str();
-	
-	tempdata.push_back (l_string);
+    oss << setprecision(3) << pushed/10;
+	tempdata.push_back (oss.str());
 	
 	binaryParts(24,30);
     reverse(push.begin(), push.end());
@@ -177,8 +171,7 @@ int main(int argc, char **argv) {
 		return 0;
 	piHiPri(99);
 	pinMode(pin_in, INPUT);
-	printf("Start\n");
-	
+    cout << "Start" << endl;
 	while((opt = getopt(argc, argv, "d")) != -1) {
 		switch(opt) {
 			case 'd':
@@ -269,7 +262,6 @@ int main(int argc, char **argv) {
                         diff_time = difftime(new_time, old_time);
                         
                         if (tempdata[1] != old_channel) {
-                            cout << "different sender" << endl;
                             cout << "id " << tempdata[0] << endl;
                             cout << "channel " << tempdata[1] << endl;
                             cout << "temp bin " <<tempdata[2] << endl;
@@ -281,8 +273,6 @@ int main(int argc, char **argv) {
                             old_time = new_time;
                             
                         } else if (diff_time > 10) {
-                            
-                            cout << "different time" << endl;
                             cout << "id " << tempdata[0] << endl;
                             cout << "channel " << tempdata[1] << endl;
                             cout << "temp bin " <<tempdata[2] << endl;
@@ -297,12 +287,14 @@ int main(int argc, char **argv) {
 				
 				}	
 			}else if(debug == 1) {
-				//acode = explode(code,';');
-				//x=0;
-//				if((int)acode.size() > 8) {
-//					cout << code << endl;
-//				}
-//				cout << code.length() << endl;
+				/*
+                acode = explode(code,';');
+				x=0;
+                if((int)acode.size() > 8) {
+                    cout << code << endl;
+                }
+                cout << code.length() << endl;
+                */
 				code.clear();
 			}
 			type = 0;
