@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Datab
+class Database
 {
 public:
 	Database(char* filename);
@@ -19,17 +19,17 @@ private:
 	sqlite3 *database;
 };
 
-Datab::Database(char* filename)
+Database::Database(char* filename)
 {
 	database = NULL;
 	open(filename);
 }
 
-Datab::~Database()
+Database::~Database()
 {
 }
 
-bool Datab::open(char* filename)
+bool Database::open(char* filename)
 {
 	if(sqlite3_open(filename, &database) == SQLITE_OK)
 		return true;
@@ -81,13 +81,13 @@ vector<vector<string> > Datab::query(char* query)
 	return results;
 }
 
-void Datab::close()
+void Database::close()
 {
 	sqlite3_close(database);
 }
 
 
-Database *db;
+Database db;
 
 db = new Database("/var/www/liteadmin/weather");
 //db->query("CREATE TABLE a (a INTEGER, b INTEGER);");
