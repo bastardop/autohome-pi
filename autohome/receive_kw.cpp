@@ -1,19 +1,16 @@
 /*	
-	Original Code from CurlyMo (int main () )
-
-	function for interpreting signals from Conrad KW9010 from BastardOp
-
-
-	Copyright 2012 CurlyMo
+    Original Code (int main () ) from CurlyMo (2012) as part of the Raspberry Pi 433.92Mhz transceiver
+ 
+    COPYRIGHT bastardp (2013)
 	
-	This file is part of the Raspberry Pi 433.92Mhz transceiver.
+	This file is part of the autohome-pi
 
-    Raspberry Pi 433.92Mhz transceiver is free software: you can redistribute 
+    Autohome-pi is free software: you can redistribute
 	it and/or modify it under the terms of the GNU General Public License as 
 	published by the Free Software Foundation, either version 3 of the License, 
 	or (at your option) any later version.
 
-    Raspberry Pi 433.92Mhz transceiver is distributed in the hope that it will 
+    Autohome-pi is distributed in the hope that it will 
 	be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -23,27 +20,26 @@
 	<http://www.gnu.org/licenses/>
 */
 
-//#include <wiringPi.h>
+#include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include <getopt.h>
-//#include <unistd.h>
+#include <getopt.h>
+#include <unistd.h>
 #include <ctype.h>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
-//#include <bitset>
-//#include <limits>
+#include <bitset>
+#include <limits>
 #include <time.h>
 #include <algorithm>
 #include <iterator>
 #include <time.h>
+#include <iomanip>
+
 
 using namespace std;
-
-string code;
-string push;
 
 vector<string> bin;
 vector<string> acode;
@@ -54,66 +50,28 @@ time_t old_time;
 time_t new_time;
 
 float pushed;
+
 long int wert = 0;
-int speed = 50;
-int end = 100;
+
+int ende = 100;
 int start = 30;
 int marge = 5;
 int debug = 0;
 int bit = 2;
 int type = 0;
-int noendl = 0;
 
 double diff_time;
 
 string old_id;
 string old_channel;
+string code;
+string push;
+
 
 string itos(int i) {
     ostringstream s;
     s << i;
     return s.str();
-}
-
-
-void makebin(){
-	int i=0;
-	for(i=0;i<acode.size();++i) {
-		if(atoi(acode[i].c_str()) > 10 && atoi(acode[i].c_str()) < 39){
-			bin.push_back ("0");
-		} else if (atoi(acode[i].c_str()) > 39) {
-			bin.push_back("1");
-		}
-	}
-
-}
-
-void binaryParts(int start, int stop) {
-	int i=0;
-	push="" ;
-	for(i=start;i<=stop;++i){
-		push.append(bin[i]);
-	}
-}
-
-void makedata(){
-	binaryParts(0,2);
-	tempdata.push_back (push);
-	
-	binaryParts(3,4);
-        tempdata.push_back (push);
-	
-	binaryParts(11,22);
-	reverse(push.begin(), push.end());
-	tempdata.push_back (push);
-	pushed = stoi(push,nullptr,2);        
-	tempdata.push_back (to_string(pushed/10));
-	
-	binaryParts(23,29);
-        reverse(push.begin(), push.end());
-        tempdata.push_back (push);
-	pushed = stoi(push,nullptr,2);        
-        tempdata.push_back (to_string(pushed-28));
 }
 
 vector<string> explode( const string &delimiter, const string &str)
@@ -147,29 +105,130 @@ vector<string> explode( const string &delimiter, const string &str)
     return arr;
 }
 
+/*
+void clearcode(){
+    int i=0;
+    for(i=0;i<acode.size();++i) {
+        if(atoi(acode[i].c_str()) > 5){
+            ccode.push_back (acode[i].c_str());
+        }
+    }
+}
+*/
 
+void makebin(){
+	int i=0;
+	for(i=0;i<acode.size();++i) {
+		if(atoi(acode[i].c_str()) > 10 && atoi(acode[i].c_str()) < 39){
+			bin.push_back ("0");
+		} else if (atoi(acode[i].c_str()) > 39) {
+			bin.push_back("1");
+		}
+	}
 
-int main(int argc, char **argv) { 
+}
+
+void binaryParts(int start, int stop) {
+	int i=0;
+	push = "";
+	for(i=start;i<=stop;++i){
+		push.append(bin[i]);
+	}
+}
+
+void makedata(){
+    stringstream oss;
+
+    tempdata.clear();
+	binaryParts(0,3);
+	tempdata.push_back (push);
+	
+	binaryParts(4,5);
+    tempdata.push_back (push);
+    
+	binaryParts(12,23);
+	reverse(push.begin(), push.end());
+	tempdata.push_back (push);
+	pushed = stoi(push,nullptr,2);
+    oss << setprecision(3) << pushed/10;
+	tempdata.push_back (oss.str());
+	
+	binaryParts(24,30);
+    reverse(push.begin(), push.end());
+    tempdata.push_back (push);
+	pushed = stoi(push,nullptr,2);
+    tempdata.push_back (to_string(int(pushed)-28));
+}
+
+int main(int argc, char **argv) {
 	int pin_in = 2;
 	int read = 0;
 	int one = 0;
 	int zero = 0;
 	int opt = 0;
-	//int noCalc = 0;
-	printf("Start\n");
-
-code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26;6;25;5;54;5;55;5;26;5;26;6;54;5;26;5;24;5;24;5;24;5;25;5;25;6;52;5;26;5;27;6;58;6;57;5;55;5;26;5;54;6;51;5;";
 	
+	if(wiringPiSetup() == -1)
+		return 0;
+	piHiPri(99);
+	pinMode(pin_in, INPUT);
+    cout << "Start" << endl;
+	while((opt = getopt(argc, argv, "d")) != -1) {
+		switch(opt) {
+			case 'd':
+				debug = 1;
+			break;
+			default:
+				exit(EXIT_FAILURE);
+		}
+	}
+
+	while(1) {
+		usleep(50);
+		
+        if(digitalRead(pin_in) == 1) {
+			one++;
+		
+            if(read == 1 && zero > 0) {
+					code.append(itos(zero));
+					code.append(";");
+			}
+			zero=0;
+		}
+		if(digitalRead(pin_in) == 0) {
+			zero++;
+			if(read == 1 && one > 0) {
+					code.append(itos(one));
+					code.append(";");
+			}
+			one=0;
+		}
+		if((zero >= (start-marge)) && (zero <= (start+marge)) && read == 0) {
+			read = 1;			
+			zero = 0;
+			one = 0;
+		}
+		
+		if(read == 1 && zero >= ende) {
+			read=0;
+			
 			acode = explode(";",code);
-				cout << "Code length:\t" << acode.size() << endl;
+			
+            if(debug == 1) {
+            
+                if(acode.size() > 1) {
+                    cout << "Code length:\t" << acode.size() << endl;
+                    cout << "Code length:\t" << code << endl;
+            
+                }
+            }
 			
 			switch((int)acode.size()) {
 				case 73:
 					type = 2;
-                break;
-                case 72:
-                    type = 2
 				break;
+                case 72:
+                    type = 2;
+                break;
 				default:
 					type = 0;
 				break;
@@ -178,7 +237,8 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
 				
 				if(type == 2){
 					makebin();
-					if(debug == 1) {
+					
+                    if(debug == 1) {
 						cout << "Binary length:\t" << bin.size() << endl;
 						cout << "Binary:\t";
 						copy(bin.begin(), bin.end(), ostream_iterator<string>(cout));
@@ -186,11 +246,11 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
 					}
 					switch((int)bin.size()) {
 						case 35:
+							type = 0;
+                        break;
+                        case 36:
 							type = 1;
 						break;
-                        case 36:
-                            type = 1;
-                        break;
 						default:
 							type = 0;
 						break;
@@ -200,8 +260,8 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
 						makedata();
                         time(&new_time);
                         diff_time = difftime(new_time, old_time);
-                        if (old_id != tempdata[0] && old_channel != tempdata[1]) {
-                            cout << "different sender" << endl;
+                        
+                        if (tempdata[1] != old_channel) {
                             cout << "id " << tempdata[0] << endl;
                             cout << "channel " << tempdata[1] << endl;
                             cout << "temp bin " <<tempdata[2] << endl;
@@ -211,10 +271,8 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
                             old_id = tempdata[0];
                             old_channel = tempdata[1];
                             old_time = new_time;
-
-                        } else if (diff_time > 10) {
                             
-                            cout << "different time" << endl;
+                        } else if (diff_time > 10) {
                             cout << "id " << tempdata[0] << endl;
                             cout << "channel " << tempdata[1] << endl;
                             cout << "temp bin " <<tempdata[2] << endl;
@@ -225,10 +283,19 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
                             old_channel = tempdata[1];
                             old_time = new_time;
                         }
-                        
-					}
+                    }
 				
 				}	
+			}else if(debug == 1) {
+				/*
+                acode = explode(code,';');
+				x=0;
+                if((int)acode.size() > 8) {
+                    cout << code << endl;
+                }
+                cout << code.length() << endl;
+                */
+				code.clear();
 			}
 			type = 0;
 			bin.clear();
@@ -237,6 +304,6 @@ code = "2;25;25;6;25;5;53;5;53;5;25;6;26;6;25;5;26;6;24;5;50;5;51;6;24;6;25;6;26
 			one=0;
 			ccode.clear();
 			zero=0;
-		
-	
+		}
+	}
 }
