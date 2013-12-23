@@ -37,7 +37,7 @@ bool Database::open(char* filename)
 	return false;
 }
 
-vector<vector<string> > Datab::query(char* query)
+vector<vector<string> > Database::query(char* query)
 {
 	sqlite3_stmt *statement;
 	vector<vector<string> > results;
@@ -87,17 +87,17 @@ void Database::close()
 }
 
 
-Database db;
+Database *data;
 
-db = new Database("/var/www/liteadmin/weather");
+data = new Database("/var/www/liteadmin/weather");
 //db->query("CREATE TABLE a (a INTEGER, b INTEGER);");
 //db->query("INSERT INTO a VALUES(1, 2);");
 //db->query("INSERT INTO a VALUES(5, 4);");
-vector<vector<string> > result = db->query("SELECT * FROM location;");
+vector<vector<string> > result = data->query("SELECT * FROM location;");
 for(vector<vector<string> >::iterator it = result.begin(); it < result.end(); ++it)
 {
 	vector<string> row = *it;
 	cout << "Values: (key=" << row.at(0) << ", name=" << row.at(1) << ")" << endl;
 }
-db->close();
+data->close();
 

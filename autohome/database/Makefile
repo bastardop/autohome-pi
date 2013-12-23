@@ -1,6 +1,6 @@
-SOURCE = ./dbuse.cpp ./Database.cpp -lwiringPi -lpthread
+SOURCE = dbuse.cpp -lsqlite3 -lpthread
 APP = ./dbuse
-CC = g++
+CC = gcc
 
 all: $(APP)
 
