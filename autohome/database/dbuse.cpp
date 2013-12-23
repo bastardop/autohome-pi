@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Database
+class Datab
 {
 public:
 	Database(char* filename);
@@ -19,17 +19,17 @@ private:
 	sqlite3 *database;
 };
 
-Database::Database(char* filename)
+Datab::Database(char* filename)
 {
 	database = NULL;
 	open(filename);
 }
 
-Database::~Database()
+Datab::~Database()
 {
 }
 
-bool Database::open(char* filename)
+bool Datab::open(char* filename)
 {
 	if(sqlite3_open(filename, &database) == SQLITE_OK)
 		return true;
@@ -37,7 +37,7 @@ bool Database::open(char* filename)
 	return false;
 }
 
-vector<vector<string> > Database::query(char* query)
+vector<vector<string> > Datab::query(char* query)
 {
 	sqlite3_stmt *statement;
 	vector<vector<string> > results;
@@ -81,7 +81,7 @@ vector<vector<string> > Database::query(char* query)
 	return results;
 }
 
-void Database::close()
+void Datab::close()
 {
 	sqlite3_close(database);
 }
