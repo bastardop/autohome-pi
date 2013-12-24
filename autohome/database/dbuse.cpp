@@ -1,103 +1,35 @@
+#include "sqdb.h"
 #include <iostream>
-#include <string>
-#include <vector>
-#include <sqlite3.h>
 
 using namespace std;
-
-class Database
+string name;
+string channel_id;
+string sender_id;
+char quer;
+int main()
 {
-public:
-	Database(char* filename);
-	~Database();
-	
-	bool open(char* filename);
-	vector<vector<string> > query(char* query);
-	void close();
-	
-private:
-	sqlite3 *database;
-};
 
-Database::Database(char* filename)
-{
-	database = NULL;
-	open(filename);
+name = "zimmer4";
+channel_id = "44";
+sender_id = "1001";
+sqdb::Db db("/var/www/liteadmin/weather");
+try {
+sqdb::Statement i = db.Query("insert into location (name, sender_id, channel_id) values (?, ?, ?)");
+i.Bind(1, "zimmer4");
+i.Bind(2, "1001");
+i.Bind(3, "77");
+i.Next();
+}
+catch ( const sqdb::Exception& e ){
+sqdb::Exception excep(sqdb::Exception&);
+cout << "Fehler ist aufgetreten " << excep << endl;
 }
 
-Database::~Database()
-{
+sqdb::Statement s = db.Query("select * from location;");
+  while ( s.Next() )
+  {
+    int i = s.GetField(0);    // Get the first column.
+    string d = s.GetField(1); // Get second column.
+	cout << "key " << i << " name " << d << endl;
+  }
 }
-
-bool Database::open(char* filename)
-{
-	if(sqlite3_open(filename, &database) == SQLITE_OK)
-		return true;
-    
-	return false;
-}
-
-vector<vector<string> > Database::query(char* query)
-{
-	sqlite3_stmt *statement;
-	vector<vector<string> > results;
-    
-	if(sqlite3_prepare_v2(database, query, -1, &statement, 0) == SQLITE_OK)
-	{
-		int cols = sqlite3_column_count(statement);
-		int result = 0;
-		while(true)
-		{
-			result = sqlite3_step(statement);
-			
-			if(result == SQLITE_ROW)
-			{
-				vector<string> values;
-				for(int col = 0; col < cols; col++)
-				{
-                    std::string val;
-                    char * ptr =(char*)sqlite3_column_text(statement, col);
-                    
-                    if(ptr){
-                        val = ptr;
-                    }
-                    else val = "";
-                    values.push_back(val);
-				}
-				results.push_back(values);
-			}
-			else
-			{
-				break;
-			}
-		}
-        
-		sqlite3_finalize(statement);
-	}
-	
-	string error = sqlite3_errmsg(database);
-	if(error != "not an error") cout << query << " " << error << endl;
-	
-	return results;
-}
-
-void Database::close()
-{
-	sqlite3_close(database);
-}
-
-
-Database *data;
-
-data = new Database("/var/www/liteadmin/weather");
-//db->query("CREATE TABLE a (a INTEGER, b INTEGER);");
-//db->query("INSERT INTO a VALUES(1, 2);");
-//db->query("INSERT INTO a VALUES(5, 4);");
-vector<vector<string> > result = data->query("SELECT * FROM location;");
-for(vector<vector<string> >::iterator it = result.begin(); it < result.end(); ++it)
-{
-	vector<string> row = *it;
-	cout << "Values: (key=" << row.at(0) << ", name=" << row.at(1) << ")" << endl;
-}
-data->close();
-

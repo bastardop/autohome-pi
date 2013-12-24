@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "sqdb.h"
+#include <sqlite3.h>
 
 using namespace sqdb;
 

@@ -1,11 +1,11 @@
-SOURCE = dbuse.cpp -lsqlite3 -lpthread
+SOURCE = sqdb.cpp dbuse.cpp -lsqlite3 -lpthread -ldl
 APP = ./dbuse
-CC = gcc
+CC = g++
 
 all: $(APP)
 
 $(APP): $(SOURCE)
-	chmod -R 755 *
+#	chmod -R 755 *
 	$(CC) $(SOURCE) -o $(APP)
 
 clean:
