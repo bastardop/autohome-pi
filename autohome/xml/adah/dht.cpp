@@ -41,7 +41,7 @@ using namespace std;
 
 
 
-void readDHT(int type, int pin){
+float readDHT(int type, int pin){
         int counter = 0;
         int laststate = HIGH;
         int j=0;
@@ -108,5 +108,5 @@ void readDHT(int type, int pin){
                 
             }
         }
-    
+    return f;
     }

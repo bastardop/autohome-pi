@@ -41,6 +41,6 @@ int main(void){
     
     cout << "start" << endl;
     //bcm2835_gpio_fsel(17, BCM2835_GPIO_FSEL_OUTP);
-    readDHT(11, 0);
-    cout << "temp: " << f << " humi: " << h << endl;
+    //readDHT(11, 0);
+    cout << "temp: " << readDHT(11,0) << endl;
 }
