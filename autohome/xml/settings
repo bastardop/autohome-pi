@@ -10,6 +10,8 @@
 
 <dhton>1</dhton>
 
+<databasefile>/var/www/liteadmin/weather</databasefile>
+
 <dht>
 raum1:11:17;
 raum2:22:27;
