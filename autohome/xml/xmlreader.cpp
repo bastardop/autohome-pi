@@ -28,7 +28,7 @@ XmlReader::XmlReader(std::string _content) {
 XmlReader::~XmlReader() {
 }
 
-std::string XmlReader::generateXml(int port, int datagpio, int senderon, int reciveron, int dhton, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules, std::vector<Dht> dht) {
+std::string XmlReader::generateXml(int port, int datagpio, int senderon, int recieveron, int dhton, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules, std::vector<Dht> dht) {
     std::stringstream xml;
 
     xml << "<port>" << Tools::convertIntToStr(port) << "</port>" << std::endl << std::endl;
