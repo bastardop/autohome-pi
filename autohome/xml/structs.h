@@ -175,3 +175,5 @@ class DHT {
     std::string getType();
     std::string getGpio();
 };
+
+#endif
