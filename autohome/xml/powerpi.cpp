@@ -124,7 +124,7 @@ void loadSettings() {
 }
 
 void saveSettings() {
-    string xmldata = XmlReader::generateXml(port, datagpio, sockets, gpios, schedules);
+    string xmldata = XmlReader::generateXml(port, datagpio, sockets, gpios, schedules, dht);
     saveFile(settingsFile, xmldata);
 }
 

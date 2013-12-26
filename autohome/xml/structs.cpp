@@ -216,7 +216,7 @@ Dht::Dht() {
     
 }
 
-Dht::Dht(std::string _name, std::string _type, std:string _gpio){
+Dht::Dht(std::string _name, std::string _type, std::string _gpio){
     name = _name;
     type = _type;
     gpio = _gpio;
@@ -238,7 +238,7 @@ void Dht::setGpio(std::string _gpio){
     gpio = _gpio;
 }
 
-std:string Dht::getName(){
+std::string Dht::getName(){
     return name;
 }
 

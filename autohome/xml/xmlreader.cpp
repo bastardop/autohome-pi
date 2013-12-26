@@ -28,7 +28,7 @@ XmlReader::XmlReader(std::string _content) {
 XmlReader::~XmlReader() {
 }
 
-std::string XmlReader::generateXml(int port, int datagpio, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules, std::vector<DHT> dht) {
+std::string XmlReader::generateXml(int port, int datagpio, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules, std::vector<Dht> dht) {
     std::stringstream xml;
 
     xml << "<port>" << Tools::convertIntToStr(port) << "</port>" << std::endl << std::endl;
@@ -101,7 +101,7 @@ std::vector<Schedule> XmlReader::getSchedules() {
 	return schedules;
 }
 
-std::vector<DHT> XmlReader::getDHT() {
+std::vector<Dht> XmlReader::getDHT() {
 	parseDHT();
 	return dht;
 }
@@ -201,7 +201,7 @@ void XmlReader::parseDHT() {
         for(int l=0; l<lines.size(); l++) {
             if(lines[l].length() > 0) {
                 std::vector<std::string> words = Tools::explode(":", lines[l]);
-                dht d;
+                Dht d;
                 for(int w=0; w<words.size(); w++) {
                     if(typeid(words.at(0))==typeid(std::string))  d.setName(words[0]);
                     if(typeid(words.at(1))==typeid(std::string))  d.setType(words[1]);
