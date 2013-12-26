@@ -33,7 +33,7 @@ dhtread::~dhtread(){
 
 std::vector<std::string> dhtread::getTemp(){
     readDHT(11, 0);
-    return dhttemp
+    return temps;
 }
 
 // ----- private ---------
