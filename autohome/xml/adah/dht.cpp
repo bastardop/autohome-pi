@@ -6,19 +6,6 @@
 //
 //
 
-//#include "dht.h"
-
-//  How to access GPIO registers from C-code on the Raspberry-Pi
-//  Example program
-//  15-January-2012
-//  Dom and Gert
-//
-
-
-#define BCM2708_PERI_BASE        0x20000000
-#define GPIO_BASE                (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
-
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -30,9 +17,6 @@
 
 int MAXTIMINGS = 100;
 
-//#define DEBUG
-
-
 int bits[250], data[100];
 int bitidx = 0;
 
@@ -40,13 +24,11 @@ float f, h;
 
 using namespace std;
 
-
-
 vector<float> readDHT(int type, int pin){
         int counter = 0;
         int laststate = HIGH;
         int j=0;
-    vector<float> back;
+        vector<float> back;
         // Set GPIO pin to output
     if(wiringPiSetup()==-1)
         exit(1);
