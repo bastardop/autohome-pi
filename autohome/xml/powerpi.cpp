@@ -110,7 +110,7 @@ string getSettings() {
 	for(int s=0; s<schedules.size(); s++)
         out << schedules[s].toString();
     
-    for (d=0; d<dht.size(); d++) {
+    for(int d=0; d<dht.size(); d++) {
         out << dht[d].toString();
     }
 
@@ -137,7 +137,7 @@ void loadSettings() {
     dhton = reader.getDhton();
     recievergpio = reader.getRecievergpio();
     recieveron = reader.getRecieveron();
-    senderon = reader.getSeneron();
+    senderon = reader.getSenderon();
     databaseFile = reader.getDatabase();
 	sockets = reader.getSockets();
 	gpios = reader.getGpios();

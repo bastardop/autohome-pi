@@ -40,7 +40,7 @@ class XmlReader {
         int senderon;
         int recieveron;
         int dhton;
-        int recievergpio
+        int recievergpio;
         std:string databaseFile;
 		std::vector<WSocket> sockets;
 		std::vector<Gpio> gpios;
