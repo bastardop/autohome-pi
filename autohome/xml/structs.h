@@ -174,6 +174,8 @@ class Dht {
     std::string getName();
     std::string getType();
     std::string getGpio();
+    
+    std::string toString();
 };
 
 #endif

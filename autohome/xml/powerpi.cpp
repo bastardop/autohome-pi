@@ -157,9 +157,16 @@ int main(void)
 	time_t now = time(0);
 	
 	loadSettings();
+    
+    if (dht.getDhton() == 1) {
+        
+    
     for(int s=0; s<dht.size(); s++) {
         cout << "dht:" << dht[s].getName() << ":" << dht[s].getType() << ":" <<dht[s].getGpio() <<";" << endl;
     }
-
+    } else
+    {
+        cout << "dht off" << endl;
+    }
 
 }

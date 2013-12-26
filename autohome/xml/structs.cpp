@@ -249,3 +249,8 @@ std::string Dht::getType(){
 std::string Dht::getGpio(){
     return gpio;
 }
+
+std::string Dht::toString() {
+	std::string str = std::string("DHT { name: ") + name + std::string("; Type: ") + type + std::string("; GPIO: ") + gpio +std::string(" }");
+	return str;
+}

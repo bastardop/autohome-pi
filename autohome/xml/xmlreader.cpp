@@ -28,16 +28,14 @@ XmlReader::XmlReader(std::string _content) {
 XmlReader::~XmlReader() {
 }
 
-std::string XmlReader::generateXml(int port, int datagpio, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules, std::vector<Dht> dht) {
+std::string XmlReader::generateXml(int port, int datagpio, int senderon, int reciveron, int dhton, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules, std::vector<Dht> dht) {
     std::stringstream xml;
 
     xml << "<port>" << Tools::convertIntToStr(port) << "</port>" << std::endl << std::endl;
     xml << "<datagpio>" << Tools::convertIntToStr(datagpio) << "</datagpio>" << std::endl << std::endl;
-    //xml << "<senderon>" << Tools::convertIntToStr(senderon) << "</senderon>" << std::endl << std::endl;
-    //xml << "<recieveron>" << Tools::convertIntToStr(recieveron) << "</recieveron>" << std::endl << std::endl;
-    //xml << "<dhton>" << Tools::convertIntToStr(dhton) << "</dhton>" << std::endl << std::endl;
-
-
+    xml << "<senderon>" << Tools::convertIntToStr(senderon) << "</senderon>" << std::endl << std::endl;
+    xml << "<recieveron>" << Tools::convertIntToStr(recieveron) << "</recieveron>" << std::endl << std::endl;
+    xml << "<dhton>" << Tools::convertIntToStr(dhton) << "</dhton>" << std::endl << std::endl;
 
     xml << "<dht>" << std::endl;
     for(int s=0; s<dht.size(); s++) {
@@ -79,12 +77,21 @@ int XmlReader::getDatagpio() {
     std::string datagpio_str = findTag("datagpio");
     return atoi(datagpio_str.c_str());
 }
-/*
+
 int XmlReader::getSenderon() {
     std::string senderon_str = findTag("senderon");
     return atoi(senderon_str.c_str());
 }
-*/
+
+int XmlReader::getRecieveron() {
+    std::string reciveron_str = findTag("recieveron");
+    return atoi(reciveron_str.c_str());
+}
+
+int XmlReader::getDhton() {
+    std::string dhton_str = findTag("dhton");
+    return atoi(dhton_str.c_str());
+}
 
 std::vector<WSocket> XmlReader::getSockets() {
 	parseSockets();
@@ -193,7 +200,7 @@ void XmlReader::parseSchedules() {
 }
 
 void XmlReader::parseDHT() {
-	std::string entries = findTag("DHT");
+	std::string entries = findTag("dht");
     
     if(entries.length() > 0) {
         std::vector<std::string> lines = Tools::explode(";", entries);
