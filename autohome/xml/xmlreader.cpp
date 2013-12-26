@@ -81,8 +81,8 @@ int XmlReader::getDatagpio() {
     return atoi(datagpio_str.c_str());
 }
 
-int XmlReader::getRecieverpio() {
-    std::string recieverpio_str = findTag("recievergpio");
+int XmlReader::getRecievergpio() {
+    std::string recievergpio_str = findTag("recievergpio");
     return atoi(recievergpio_str.c_str());
 }
 
