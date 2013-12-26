@@ -28,12 +28,23 @@ XmlReader::XmlReader(std::string _content) {
 XmlReader::~XmlReader() {
 }
 
-std::string XmlReader::generateXml(int port, int datagpio, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules) {
+std::string XmlReader::generateXml(int port, int datagpio, std::vector<WSocket> sockets, std::vector<Gpio> gpios, std::vector<Schedule> schedules, std::vector<DHT> dht) {
     std::stringstream xml;
 
     xml << "<port>" << Tools::convertIntToStr(port) << "</port>" << std::endl << std::endl;
     xml << "<datagpio>" << Tools::convertIntToStr(datagpio) << "</datagpio>" << std::endl << std::endl;
+    //xml << "<senderon>" << Tools::convertIntToStr(senderon) << "</senderon>" << std::endl << std::endl;
+    //xml << "<recieveron>" << Tools::convertIntToStr(recieveron) << "</recieveron>" << std::endl << std::endl;
+    //xml << "<dhton>" << Tools::convertIntToStr(dhton) << "</dhton>" << std::endl << std::endl;
 
+
+
+    xml << "<dht>" << std::endl;
+    for(int s=0; s<dht.size(); s++) {
+        xml << dht[s].getName() << ":" << dht[s].getType() << ":" << dht[s].getGpio() << ";" << std::endl;
+    }
+    xml << "</dht>" << std::endl << std::endl;
+    
     xml << "<sockets>" << std::endl;
     for(int s=0; s<sockets.size(); s++) {
         xml << sockets[s].getName() << ":" << sockets[s].getCode() << ";" << std::endl;
@@ -68,6 +79,12 @@ int XmlReader::getDatagpio() {
     std::string datagpio_str = findTag("datagpio");
     return atoi(datagpio_str.c_str());
 }
+/*
+int XmlReader::getSenderon() {
+    std::string senderon_str = findTag("senderon");
+    return atoi(senderon_str.c_str());
+}
+*/
 
 std::vector<WSocket> XmlReader::getSockets() {
 	parseSockets();
@@ -82,6 +99,11 @@ std::vector<Gpio> XmlReader::getGpios() {
 std::vector<Schedule> XmlReader::getSchedules() {
 	parseSchedules();
 	return schedules;
+}
+
+std::vector<DHT> XmlReader::getDHT() {
+	parseDHT();
+	return dht;
 }
 
 /* ------------------- Private ------------------ */
@@ -168,5 +190,25 @@ void XmlReader::parseSchedules() {
       }
     }
   }
+}
+
+void XmlReader::parseDHT() {
+	std::string entries = findTag("DHT");
+    
+    if(entries.length() > 0) {
+        std::vector<std::string> lines = Tools::explode(";", entries);
+        
+        for(int l=0; l<lines.size(); l++) {
+            if(lines[l].length() > 0) {
+                std::vector<std::string> words = Tools::explode(":", lines[l]);
+                dht d;
+                for(int w=0; w<words.size(); w++) {
+                    if(typeid(words.at(0))==typeid(std::string))  d.setName(words[0]);
+                    if(typeid(words.at(1))==typeid(std::string))  d.setType(words[1]);
+                    if(typeid(words.at(2))==typeid(std::string))  d.setGpio(words[2]);                }
+                dht.push_back(d);
+            }
+        }
+    }
 }
 

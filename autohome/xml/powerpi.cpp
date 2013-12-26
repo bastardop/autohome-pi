@@ -50,6 +50,7 @@ int datagpio;
 vector<WSocket> sockets;
 vector<Gpio> gpios;
 vector<Schedule> schedules;
+vector<DHT> dht;
 
 vector<ScheduleTask> scheduleTasks;
 
@@ -108,6 +109,7 @@ void loadSettings() {
 	sockets.clear();
 	gpios.clear();
 	schedules.clear();
+    dht.clear()
 
   string settings = readFile(settingsFile);
 	XmlReader reader(settings);
@@ -116,6 +118,7 @@ void loadSettings() {
 	sockets = reader.getSockets();
 	gpios = reader.getGpios();
 	schedules = reader.getSchedules();
+    dht = reader.getDHT();
 
 	syslog(LOG_INFO, "Settings: %s", getSettings().c_str());
 }
@@ -154,8 +157,8 @@ int main(void)
 	time_t now = time(0);
 	
 	loadSettings();
-    for(int s=0; s<sockets.size(); s++) {
-        cout << "socket:" << sockets[s].getName() << ":" << sockets[s].getCode() << ";" << endl;
+    for(int s=0; s<dht.size(); s++) {
+        cout << "dht:" << dht[s].getName() << ":" << dht[s].getType() << ":" <<dht[s].getGpio() <<";" << endl;
     }
 
 

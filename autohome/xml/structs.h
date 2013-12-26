@@ -149,3 +149,29 @@ class WSocket {
 };
 
 #endif
+
+/* -------------- DHT --------------------*/
+
+#ifdef DHT_H
+#define DHT_H
+
+class DHT {
+    
+    private:
+        std::string name;
+        std::string type;
+        std::string gpio;
+    
+    public:
+        DHT();
+        DHT(std::string, std::string, std::string);
+        ~DHT();
+    
+    void setName(std:string);
+    void setType(std::string);
+    void setGpio(std::string);
+    
+    std::string getName();
+    std::string getType();
+    std::string getGpio();
+};

@@ -210,3 +210,42 @@ std::string WSocket::toString() {
 	std::string str = std::string("WSocket { name: ") + name + std::string("; code: ") + code + std::string(" }");
 	return str;
 }
+
+/* --------------- DHT ------------*/
+DHT::DHT () {
+    
+}
+
+DHT::DHT(std::string _name, std::string _type, std:string _gpio){
+    name = _name;
+    type = _type;
+    gpio = _gpio;
+}
+
+DHT::~DHT() {
+    
+}
+
+void DHT::setName(std::string _name){
+    name = _name;
+}
+
+void DHT::setType(std::string _type){
+    type = _type;
+}
+
+void DHT::setGpio(std::string _gpio){
+    gpio = _gpio;
+}
+
+std:string DHT::getName(){
+    return name;
+}
+
+std::string DHT::getType(){
+    return type;
+}
+
+std::string DHT::getGpio(){
+    return gpio;
+}
