@@ -6,58 +6,54 @@
 //
 //
 
-//#include "dht.h"
-
-//  How to access GPIO registers from C-code on the Raspberry-Pi
-//  Example program
-//  15-January-2012
-//  Dom and Gert
-//
-
-
-// Access from ARM Running Linux
-
-#define BCM2708_PERI_BASE        0x20000000
-#define GPIO_BASE                (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
-
+#include "dht.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <wiringPi.h>
-#include <bcm2835.h>
 #include <iostream>
 #include <stdint.h>
 
 int MAXTIMINGS = 100;
 
-//#define DEBUG
-
-
 int bits[250], data[100];
 int bitidx = 0;
 float f, h;
 
-using namespace std;
+//using namespace std;
 
+// --- public ------
+dhtread::dhtread(std::string _content){
+    content = _content;
+}
 
+dhtread::~dhtread(){
+}
 
-void readDHT(int type, int pin){
+std::vector<std::string> dhtread::getTemp(){
+    readDHT(11, 0);
+    return dhttemp
+}
+
+// ----- private ---------
+
+void dhtread::readDHT(int type, int pin){
         int counter = 0;
         int laststate = HIGH;
         int j=0;
-        
+    
+    if(wiringPiSetup()==-1)
+        exit(1);
+    
         // Set GPIO pin to output
-
-        //bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_OUTP);
-    pinMode(pin,OUTPUT);
+        pinMode(pin,OUTPUT);
         digitalWrite(pin, HIGH);
         usleep(500000);  // 500 ms
         digitalWrite(pin, LOW);
         usleep(20000);
-        
-        //bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_INPT);
-    pinMode(pin, INPUT);
+    
+        pinMode(pin, INPUT);
         data[0] = data[1] = data[2] = data[3] = data[4] = 0;
         
         // wait for pin to drop?
@@ -70,7 +66,6 @@ void readDHT(int type, int pin){
             counter = 0;
             while ( digitalRead(pin) == laststate) {
                 counter++;
-                //nanosleep(1);         // overclocking might change this?
                 if (counter == 1000)
                     break;
             }
@@ -93,7 +88,6 @@ void readDHT(int type, int pin){
             if (type == 11){
                 f = float(data[2]);
                 h = float(data[0]);
-                
             }
                 
             if (type == 22) {
@@ -106,18 +100,7 @@ void readDHT(int type, int pin){
                 if (data[2] & 0x80)  f *= -1;
                 
             }
+            temps.push_back(to_string(f));
+            temps.push_back(to_string(h));
         }
-    
     }
-
-int main(void){
-    //if (!bcm2835_init())
-      //  return 1;
-    if(wiringPiSetup()==-1)
-        exit(1);
-    
-    cout << "start" << endl;
-    //bcm2835_gpio_fsel(17, BCM2835_GPIO_FSEL_OUTP);
-    readDHT(11, 0);
-    cout << "temp: " << f << " humi: " << h << endl;
-}
