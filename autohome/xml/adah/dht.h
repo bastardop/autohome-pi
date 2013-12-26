@@ -9,8 +9,9 @@
 #ifndef ____dht__
 #define ____dht__
 
+#include <vector>
 #include <iostream>
 
-float readDHT(int, int);
+std::vector<float> readDHT(int, int);
 
 #endif /* defined(____dht__) */
