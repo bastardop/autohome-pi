@@ -212,40 +212,40 @@ std::string WSocket::toString() {
 }
 
 /* --------------- DHT ------------*/
-DHT::DHT() {
+Dht::Dht() {
     
 }
 
-DHT::DHT(std::string _name, std::string _type, std:string _gpio){
+Dht::Dht(std::string _name, std::string _type, std:string _gpio){
     name = _name;
     type = _type;
     gpio = _gpio;
 }
 
-DHT::~DHT() {
+Dht::~Dht() {
     
 }
 
-void DHT::setName(std::string _name){
+void Dht::setName(std::string _name){
     name = _name;
 }
 
-void DHT::setType(std::string _type){
+void Dht::setType(std::string _type){
     type = _type;
 }
 
-void DHT::setGpio(std::string _gpio){
+void Dht::setGpio(std::string _gpio){
     gpio = _gpio;
 }
 
-std:string DHT::getName(){
+std:string Dht::getName(){
     return name;
 }
 
-std::string DHT::getType(){
+std::string Dht::getType(){
     return type;
 }
 
-std::string DHT::getGpio(){
+std::string Dht::getGpio(){
     return gpio;
 }

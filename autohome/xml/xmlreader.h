@@ -43,7 +43,7 @@ class XmlReader {
 		std::vector<WSocket> sockets;
 		std::vector<Gpio> gpios;
 		std::vector<Schedule> schedules;
-        std::vector<DHT> dht;
+        std::vector<Dht> dht;
 
 
 		std::string findTag(std::string);

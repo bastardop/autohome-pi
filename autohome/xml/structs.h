@@ -155,7 +155,7 @@ class WSocket {
 #ifdef DHT_H
 #define DHT_H
 
-class DHT {
+class Dht {
     
     private:
         std::string name;
@@ -163,9 +163,9 @@ class DHT {
         std::string gpio;
     
     public:
-        DHT();
-        DHT(std::string, std::string, std::string);
-        ~DHT();
+        Dht();
+        Dht(std::string, std::string, std::string);
+        ~Dht();
     
     void setName(std:string);
     void setType(std::string);
