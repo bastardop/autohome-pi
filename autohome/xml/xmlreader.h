@@ -56,7 +56,7 @@ class XmlReader {
 		XmlReader(std::string);
 		~XmlReader();
 
-    static std::string generateXml(int, int, std::vector<WSocket>, std::vector<Gpio>, std::vector<Schedule>, std::vector<DHT>);
+    static std::string generateXml(int, int, std::vector<WSocket>, std::vector<Gpio>, std::vector<Schedule>, std::vector<Dht>);
         std::string getContent();
 		int getPort();
 		int getDatagpio();
@@ -66,7 +66,7 @@ class XmlReader {
 		std::vector<WSocket> getSockets();
 		std::vector<Gpio> getGpios();
 		std::vector<Schedule> getSchedules();
-        std::vector<DHT> getDHT();
+        std::vector<Dht> getDHT();
 };
 
 #endif

@@ -109,7 +109,7 @@ void loadSettings() {
 	sockets.clear();
 	gpios.clear();
 	schedules.clear();
-    dht.clear()
+    dht.clear();
 
   string settings = readFile(settingsFile);
 	XmlReader reader(settings);
