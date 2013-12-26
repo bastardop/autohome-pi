@@ -101,7 +101,7 @@ void dhtread::readDHT(int type, int pin){
                 if (data[2] & 0x80)  f *= -1;
                 
             }
-            temps.push_back(to_string(f));
-            temps.push_back(to_string(h));
+            temps.push_back(std::to_string(f));
+            temps.push_back(std::to_string(h));
         }
     }
