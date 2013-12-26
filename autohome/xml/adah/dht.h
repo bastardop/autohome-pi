@@ -21,6 +21,7 @@
 class dhtread {
     
 private:
+    std::string content;
     std::vector<std::string> temps;
     void readDHT();
     
