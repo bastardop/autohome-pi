@@ -24,17 +24,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <dirent.h>
-#include <fcntl.h>
-#include <assert.h>
-#include <unistd.h>
-#include <sys/mman.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/time.h>
+#include <wiringPi.h>
 #include <bcm2835.h>
-#include <unistd.h>
 #include <iostream>
+#include <stdint.h>
 
 int MAXTIMINGS = 100;
 
@@ -56,32 +49,32 @@ void readDHT(int type, int pin){
         
         // Set GPIO pin to output
 
-        bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_OUTP);
-        
-        bcm2835_gpio_write(pin, HIGH);
+        //bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_OUTP);
+    pinMode(pin,OUTPUT);
+        digitalWrite(pin, HIGH);
         usleep(500000);  // 500 ms
-        bcm2835_gpio_write(pin, LOW);
+        digitalWrite(pin, LOW);
         usleep(20000);
         
-        bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_INPT);
-        
+        //bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_INPT);
+    pinMode(pin, INPUT);
         data[0] = data[1] = data[2] = data[3] = data[4] = 0;
         
         // wait for pin to drop?
-        while (bcm2835_gpio_lev(17) == 1) {
+        while (digitalRead(pin) == 1) {
             usleep(1);
         }
         
         // read data!
         for (int i=0; i< MAXTIMINGS; i++) {
             counter = 0;
-            while ( bcm2835_gpio_lev(pin) == laststate) {
+            while ( digitalRead(pin) == laststate) {
                 counter++;
                 //nanosleep(1);         // overclocking might change this?
                 if (counter == 1000)
                     break;
             }
-            laststate = bcm2835_gpio_lev(pin);
+            laststate = digitalRead(pin);
             if (counter == 1000) break;
             bits[bitidx++] = counter;
             
@@ -118,11 +111,13 @@ void readDHT(int type, int pin){
     }
 
 int main(void){
-    if (!bcm2835_init())
-        return 1;
+    //if (!bcm2835_init())
+      //  return 1;
+    if(wiringPiSetup()==-1)
+        exit(1);
     
     cout << "start" << endl;
     //bcm2835_gpio_fsel(17, BCM2835_GPIO_FSEL_OUTP);
-    readDHT(11, 17);
+    readDHT(11, 0);
     cout << "temp: " << f << " humi: " << h << endl;
 }
