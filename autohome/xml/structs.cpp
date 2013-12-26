@@ -212,7 +212,7 @@ std::string WSocket::toString() {
 }
 
 /* --------------- DHT ------------*/
-DHT::DHT () {
+DHT::DHT() {
     
 }
 
