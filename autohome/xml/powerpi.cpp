@@ -50,7 +50,7 @@ int datagpio;
 vector<WSocket> sockets;
 vector<Gpio> gpios;
 vector<Schedule> schedules;
-vector<DHT> dht;
+vector<Dht> dht;
 
 vector<ScheduleTask> scheduleTasks;
 

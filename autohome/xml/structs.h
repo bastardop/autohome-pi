@@ -148,12 +148,12 @@ class WSocket {
     std::string toString();
 };
 
-#endif
+//#endif
 
 /* -------------- DHT --------------------*/
 
-#ifdef DHT_H
-#define DHT_H
+//#ifdef DHT_H
+//#define DHT_H
 
 class Dht {
     
