@@ -26,6 +26,7 @@
 #include <bcm2835.h>
 #include <iostream>
 #include <stdint.h>
+#include <vector>
 
 int MAXTIMINGS = 100;
 
@@ -41,11 +42,11 @@ using namespace std;
 
 
 
-float readDHT(int type, int pin){
+vector<float> readDHT(int type, int pin){
         int counter = 0;
         int laststate = HIGH;
         int j=0;
-        
+    vector<float> back;
         // Set GPIO pin to output
     if(wiringPiSetup()==-1)
         exit(1);
@@ -107,6 +108,8 @@ float readDHT(int type, int pin){
                 if (data[2] & 0x80)  f *= -1;
                 
             }
+            back.push_back(f);
+            back.push_back(h);
         }
-    return f;
-    }
+    return back;
+}

@@ -38,9 +38,9 @@ using namespace std;
 int main(void){
     //if (!bcm2835_init())
       //  return 1;
-    
+    vector<float> temp;
     cout << "start" << endl;
     //bcm2835_gpio_fsel(17, BCM2835_GPIO_FSEL_OUTP);
-    //readDHT(11, 0);
-    cout << "temp: " << readDHT(11,0) << endl;
+    temp = readDHT(11, 0);
+    cout << "temp: " << temp[0] << "humi " << temp[1] << endl;
 }
