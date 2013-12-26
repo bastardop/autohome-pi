@@ -22,11 +22,11 @@ class dhtread {
     
 private:
     std::string content;
-    std::vector<std::string> temps;
+    std::vector<temps> temps;
     void readDHT(int, int);
     
 public:
-    std::vector<std::string> getTemp();
+    std::vector<dhtread> getTemp();
     dhtread(std::string);
     ~dhtread();
     
