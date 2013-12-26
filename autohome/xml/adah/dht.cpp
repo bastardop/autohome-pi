@@ -56,32 +56,32 @@ void readDHT(int type, int pin){
         
         // Set GPIO pin to output
 
-        bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_OUTP);
+        bcm2835_gpio_fsel(17, BCM2835_GPIO_FSEL_OUTP);
         
-        bcm2835_gpio_write(pin, HIGH);
+        bcm2835_gpio_write(17, HIGH);
         usleep(500000);  // 500 ms
-        bcm2835_gpio_write(pin, LOW);
+        bcm2835_gpio_write(17, LOW);
         usleep(20000);
         
-        bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_INPT);
+        bcm2835_gpio_fsel(17, BCM2835_GPIO_FSEL_INPT);
         
         data[0] = data[1] = data[2] = data[3] = data[4] = 0;
         
         // wait for pin to drop?
-        while (bcm2835_gpio_lev(pin) == 1) {
+        while (bcm2835_gpio_lev(17) == 1) {
             usleep(1);
         }
         
         // read data!
         for (int i=0; i< MAXTIMINGS; i++) {
             counter = 0;
-            while ( bcm2835_gpio_lev(pin) == laststate) {
+            while ( bcm2835_gpio_lev(17) == laststate) {
                 counter++;
                 //nanosleep(1);         // overclocking might change this?
                 if (counter == 1000)
                     break;
             }
-            laststate = bcm2835_gpio_lev(pin);
+            laststate = bcm2835_gpio_lev(17);
             if (counter == 1000) break;
             bits[bitidx++] = counter;
             
