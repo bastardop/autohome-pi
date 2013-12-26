@@ -1,4 +1,4 @@
-SOURCE = dht.cpp
+SOURCE = dht.cpp -lbcm2835
 APP = dht.bin
 CC = g++
 
