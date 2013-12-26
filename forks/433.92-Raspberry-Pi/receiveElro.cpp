@@ -145,7 +145,7 @@ void getDimLevel() {
 }
 
 int main(int argc, char **argv) { 
-	int pin_in = 3;
+	int pin_in = 2;
 	int read = 0;
 	int one = 0;
 	int zero = 0;

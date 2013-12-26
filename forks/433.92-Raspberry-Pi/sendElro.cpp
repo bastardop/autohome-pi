@@ -29,7 +29,7 @@
 using namespace std;
 
 int speed = 113;
-int pin_out = 0;
+int pin_out = 3;
 int start = 16;
 int _short = 2;
 int _long = 9; 
