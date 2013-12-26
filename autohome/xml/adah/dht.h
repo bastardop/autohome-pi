@@ -12,5 +12,6 @@
 #include <iostream>
 
 void readDHT(int, int);
+float f, h;
 
 #endif /* defined(____dht__) */

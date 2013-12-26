@@ -29,7 +29,6 @@
 #include <iostream>
 #include <stdint.h>
 
-float f, h;
 
 using namespace std;
 
