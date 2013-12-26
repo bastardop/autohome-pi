@@ -47,6 +47,9 @@ string settingsFile = "/etc/default/powerpi";
 
 int port;
 int datagpio;
+int senderon;
+int recieveron;
+int dhton;
 vector<WSocket> sockets;
 vector<Gpio> gpios;
 vector<Schedule> schedules;
@@ -106,6 +109,7 @@ string getSettings() {
 void loadSettings() {
   port = 9999;
   datagpio = 0;
+    dhton = 0;
 	sockets.clear();
 	gpios.clear();
 	schedules.clear();
@@ -115,6 +119,7 @@ void loadSettings() {
 	XmlReader reader(settings);
 	port = reader.getPort();
 	datagpio = reader.getDatagpio();
+    dhton = reader.getDhton();
 	sockets = reader.getSockets();
 	gpios = reader.getGpios();
 	schedules = reader.getSchedules();
@@ -124,7 +129,7 @@ void loadSettings() {
 }
 
 void saveSettings() {
-    string xmldata = XmlReader::generateXml(port, datagpio, sockets, gpios, schedules, dht);
+    string xmldata = XmlReader::generateXml(port, datagpio, senderon, recieveron, dhton, sockets, gpios, schedules, dht);
     saveFile(settingsFile, xmldata);
 }
 
@@ -158,7 +163,7 @@ int main(void)
 	
 	loadSettings();
     
-    if (dht.getDhton() == 1) {
+    if (dhton == 1) {
         
     
     for(int s=0; s<dht.size(); s++) {
