@@ -36,7 +36,7 @@
 #include <unistd.h>
 #include <iostream>
 
-int MAXTIMINGS 100;
+int MAXTIMINGS = 100;
 
 //#define DEBUG
 
