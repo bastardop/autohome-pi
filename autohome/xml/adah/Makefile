@@ -1,4 +1,4 @@
-SOURCE = dht.cpp -lbcm2835 -lwiringPi
+SOURCE = dht.cpp -lwiringPi
 APP = dht.bin
 CC = g++
 
