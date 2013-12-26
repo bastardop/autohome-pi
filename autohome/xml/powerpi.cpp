@@ -44,12 +44,14 @@ along with PowerPi.  If not, see <http://www.gnu.org/licenses/>.
 using namespace std;
 
 string settingsFile = "/etc/default/powerpi";
+string databaseFile;
 
 int port;
 int datagpio;
 int senderon;
 int recieveron;
 int dhton;
+int recievergpio;
 vector<WSocket> sockets;
 vector<Gpio> gpios;
 vector<Schedule> schedules;
@@ -93,6 +95,11 @@ string getSettings() {
     stringstream out;
     out << "Port: " << port;
     out << "Data-Gpio: " << datagpio;
+    out << "Reciever-Gpio: " << recievergpio;
+    out << "Sender On: " << senderon;
+    out << "Reciever On: " << recieveron;
+    out << "DHT On: " << dhton;
+    out << "Datebase File: " << databaseFile;
 
 	for(int s=0; s<sockets.size(); s++)
         out << sockets[s].toString();
@@ -102,24 +109,36 @@ string getSettings() {
 
 	for(int s=0; s<schedules.size(); s++)
         out << schedules[s].toString();
+    
+    for (d=0; d<dht.size(); d++) {
+        out << dht[d].toString();
+    }
 
     return out.str();
 }
 
 void loadSettings() {
-  port = 9999;
-  datagpio = 0;
+    port = 9999;
+    datagpio = 0;
+    recievergpio = 0;
     dhton = 0;
+    senderon = 0;
+    recieveron = 0;
 	sockets.clear();
 	gpios.clear();
 	schedules.clear();
     dht.clear();
+    databaseFile = "";
 
   string settings = readFile(settingsFile);
 	XmlReader reader(settings);
 	port = reader.getPort();
 	datagpio = reader.getDatagpio();
     dhton = reader.getDhton();
+    recievergpio = reader.getRecievergpio();
+    recieveron = reader.getRecieveron();
+    senderon = reader.getSeneron();
+    databaseFile = reader.getDatabase();
 	sockets = reader.getSockets();
 	gpios = reader.getGpios();
 	schedules = reader.getSchedules();
@@ -129,7 +148,7 @@ void loadSettings() {
 }
 
 void saveSettings() {
-    string xmldata = XmlReader::generateXml(port, datagpio, senderon, recieveron, dhton, sockets, gpios, schedules, dht);
+    string xmldata = XmlReader::generateXml(port, datagpio, recievergpio, senderon, recieveron, dhton, databaseFile, sockets, gpios, schedules, dht);
     saveFile(settingsFile, xmldata);
 }
 
@@ -148,6 +167,10 @@ string generateList() {
         out << "schedule:" << schedules[s].getName() << ":" << schedules[s].getSocket() << ":" << schedules[s].getGpio() << ":" << Tools::convertIntToStr(schedules[s].getHour()) << ":" << Tools::convertIntToStr(schedules[s].getMinute()) << ":" << Tools::convertIntToStr(schedules[s].getOnoff()) << ":" << Tools::convertIntToStr(schedules[s].getStatus()) << ";";
     }
 
+    for(int d=0; d<dht.size(); d++) {
+        out << "dht:" << dht[d].getName() << ":" << dht[d].getType() << ":" << dht[d].getGpio() << ";";
+    }
+
     out << "\x00" << endl;
 
     return out.str();
@@ -162,6 +185,8 @@ int main(void)
 	time_t now = time(0);
 	
 	loadSettings();
+    
+    cout << "Datebase File: " << databaseFile << endl;
     
     if (dhton == 1) {
         
