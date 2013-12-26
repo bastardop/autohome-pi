@@ -14,7 +14,7 @@
 #include <wiringPi.h>
 #include <iostream>
 #include <stdint.h>
-
+#include <unistd.h>
 
 int MAXTIMINGS = 100;
 
@@ -50,7 +50,7 @@ void dhtread::readDHT(int type, int pin){
         // Set GPIO pin to output
         pinMode(pin,OUTPUT);
         digitalWrite(pin, HIGH);
-    std::usleep(500000);  // 500 ms
+        usleep(500000);  // 500 ms
         digitalWrite(pin, LOW);
         usleep(20000);
     
