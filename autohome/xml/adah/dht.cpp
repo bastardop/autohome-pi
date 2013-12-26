@@ -36,7 +36,6 @@ int MAXTIMINGS = 100;
 
 int bits[250], data[100];
 int bitidx = 0;
-float f, h;
 
 using namespace std;
 
