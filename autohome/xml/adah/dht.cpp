@@ -98,8 +98,10 @@ void readDHT(int type, int pin){
             (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)) ) {
             // yay!
             if (type == 11){
-                f = data[2];
-                h = data[0];
+                f = (data[2] & 0x7F)+ 256;
+                f /= 10;
+                h = data[0] * 256;
+                h /= 10;
             }
                 
             if (type == 22) {
