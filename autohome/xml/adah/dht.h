@@ -11,4 +11,6 @@
 
 #include <iostream>
 
+void readDHT(int, int);
+
 #endif /* defined(____dht__) */
