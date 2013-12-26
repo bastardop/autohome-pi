@@ -48,6 +48,8 @@ void readDHT(int type, int pin){
         int j=0;
         
         // Set GPIO pin to output
+    if(wiringPiSetup()==-1)
+        exit(1);
 
         //bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_OUTP);
     pinMode(pin,OUTPUT);
@@ -109,15 +111,3 @@ void readDHT(int type, int pin){
         }
     
     }
-
-int main(void){
-    //if (!bcm2835_init())
-      //  return 1;
-    if(wiringPiSetup()==-1)
-        exit(1);
-    
-    cout << "start" << endl;
-    //bcm2835_gpio_fsel(17, BCM2835_GPIO_FSEL_OUTP);
-    readDHT(11, 0);
-    cout << "temp: " << f << " humi: " << h << endl;
-}
