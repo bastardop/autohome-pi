@@ -38,8 +38,12 @@ int main(void){
         } catch(...){
             cout << "fehler beim auslesen" << endl;
         }
+try {
     cout << "temp: " << temp[0] << "humi " << temp[1] << endl;
-        sqdb::Db db("/var/www/liteadmin/weather");
+} catch(...){
+cout << "obviusly wrong data" << endl;}     
+
+   sqdb::Db db("/var/www/liteadmin/weather");
         try {
             sqdb::Statement i = db.Query("insert into data (temp, humi, sender_id, time) values (?, ?, ?, ?)");
             i.Bind(1, temp[0]);
