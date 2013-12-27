@@ -37,6 +37,7 @@
 #include <iterator>
 #include <time.h>
 #include <iomanip>
+#include <../database/sqdb.h>
 
 
 using namespace std;
