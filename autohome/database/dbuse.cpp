@@ -9,15 +9,15 @@ char quer;
 int main()
 {
 
-name = "zimmer4";
-channel_id = "44";
-sender_id = "1001";
+name = "zimmer9";
+channel_id = "99";
+sender_id = "9999";
 sqdb::Db db("/var/www/liteadmin/weather");
 try {
 sqdb::Statement i = db.Query("insert into location (name, sender_id, channel_id) values (?, ?, ?)");
-i.Bind(1, "zimmer4");
-i.Bind(2, "1001");
-i.Bind(3, "77");
+i.Bind(1, name);
+i.Bind(2, sender_id);
+i.Bind(3, channel_id);
 i.Next();
 }
 catch ( const sqdb::Exception& e ){

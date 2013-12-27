@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include <vector>
 
+using namespace std;
 int MAXTIMINGS = 100;
 
 int bits[250], data[100];
@@ -23,8 +24,6 @@ int bitidx = 0;
 float f, h;
 
 vector<float> back;
-
-using namespace std;
 
 vector<float> readDHT(int type, int pin){
         int counter = 0;
