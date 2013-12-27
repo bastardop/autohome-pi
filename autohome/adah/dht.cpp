@@ -30,9 +30,6 @@ vector<float> readDHT(int type, int pin){
         int laststate = HIGH;
         int j=0;
         back.clear();
-    
-        if(wiringPiSetup()==-1) //setting wirinPi up
-        exit(1);
 
         pinMode(pin,OUTPUT); //set gpio pin to OUTPUT
         digitalWrite(pin, HIGH);

@@ -27,10 +27,17 @@ vector<float> temp;
 time_t new_time;
 
 int main(void){
+    
+    if(wiringPiSetup()==-1) //setting wirinPi up
+        exit(1);
+    
     while(1){
         time(&new_time);
     cout << "start" << endl;
-    temp = readDHT(11, 0); //caling readDHT() from dht.cpp
+        try {temp = readDHT(11, 0); //caling readDHT() from dht.cpp
+        } catch(...){
+            cout << "fehler beim auslesen" << endl;
+        }
     cout << "temp: " << temp[0] << "humi " << temp[1] << endl;
         sqdb::Db db("/var/www/liteadmin/weather");
         try {
