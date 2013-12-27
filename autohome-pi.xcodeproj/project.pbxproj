@@ -1,0 +1,650 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9DC2EEC8186D819500204686 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9DC2EECA186D819500204686 /* autohome-pi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "autohome-pi"; path = "/Users/christopher/github/autohome-pi/build/Debug/autohome-pi"; sourceTree = "<absolute>"; };
+		9DC2EED7186D821500204686 /* thermocode.ods */ = {isa = PBXFileReference; lastKnownFileType = file; path = thermocode.ods; sourceTree = "<group>"; };
+		9DC2EEFC186D823A00204686 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		9DC2EEFD186D823A00204686 /* genLirc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = genLirc.cpp; sourceTree = "<group>"; };
+		9DC2EEFE186D823A00204686 /* learn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = learn.cpp; sourceTree = "<group>"; };
+		9DC2EEFF186D823A00204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF00186D823A00204686 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		9DC2EF01186D823A00204686 /* receive */ = {isa = PBXFileReference; lastKnownFileType = file; path = receive; sourceTree = "<group>"; };
+		9DC2EF02186D823A00204686 /* receive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = receive.cpp; sourceTree = "<group>"; };
+		9DC2EF03186D823A00204686 /* receiveElro */ = {isa = PBXFileReference; lastKnownFileType = file; path = receiveElro; sourceTree = "<group>"; };
+		9DC2EF04186D823A00204686 /* receiveElro.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = receiveElro.cpp; sourceTree = "<group>"; };
+		9DC2EF05186D823A00204686 /* send.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = send.cpp; sourceTree = "<group>"; };
+		9DC2EF06186D823A00204686 /* sendElro */ = {isa = PBXFileReference; lastKnownFileType = file; path = sendElro; sourceTree = "<group>"; };
+		9DC2EF07186D823A00204686 /* sendElro.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sendElro.cpp; sourceTree = "<group>"; };
+		9DC2EF09186D823A00204686 /* Adafruit_DHT */ = {isa = PBXFileReference; lastKnownFileType = file; path = Adafruit_DHT; sourceTree = "<group>"; };
+		9DC2EF0A186D823A00204686 /* Adafruit_DHT.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Adafruit_DHT.c; sourceTree = "<group>"; };
+		9DC2EF0B186D823A00204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF10186D823A00204686 /* powerpi */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = powerpi; sourceTree = "<group>"; };
+		9DC2EF11186D823A00204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF12186D823A00204686 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		9DC2EF14186D823A00204686 /* picontrol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picontrol.cpp; sourceTree = "<group>"; };
+		9DC2EF15186D823A00204686 /* picontrol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = picontrol.h; sourceTree = "<group>"; };
+		9DC2EF16186D823A00204686 /* powerpi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = powerpi.cpp; sourceTree = "<group>"; };
+		9DC2EF17186D823A00204686 /* settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = settings; sourceTree = "<group>"; };
+		9DC2EF18186D823A00204686 /* structs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = structs.cpp; sourceTree = "<group>"; };
+		9DC2EF19186D823A00204686 /* structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = structs.h; sourceTree = "<group>"; };
+		9DC2EF1A186D823A00204686 /* tools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tools.cpp; sourceTree = "<group>"; };
+		9DC2EF1B186D823A00204686 /* tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tools.h; sourceTree = "<group>"; };
+		9DC2EF1C186D823A00204686 /* xmlreader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = xmlreader.cpp; sourceTree = "<group>"; };
+		9DC2EF1D186D823A00204686 /* xmlreader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xmlreader.h; sourceTree = "<group>"; };
+		9DC2EF20186D823A00204686 /* config.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = config.php; sourceTree = "<group>"; };
+		9DC2EF21186D823A00204686 /* index.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = index.php; sourceTree = "<group>"; };
+		9DC2EF23186D823A00204686 /* base64.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = base64.js; sourceTree = "<group>"; };
+		9DC2EF24186D823A00204686 /* bootstrap.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
+		9DC2EF25186D823A00204686 /* flatui-checkbox.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "flatui-checkbox.js"; sourceTree = "<group>"; };
+		9DC2EF26186D823A00204686 /* html5shiv.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = html5shiv.js; sourceTree = "<group>"; };
+		9DC2EF27186D823A00204686 /* icon-font-ie7.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "icon-font-ie7.js"; sourceTree = "<group>"; };
+		9DC2EF28186D823A00204686 /* jquery-1.8.2.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "jquery-1.8.2.min.js"; sourceTree = "<group>"; };
+		9DC2EF29186D823A00204686 /* jquery-1.9.1.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "jquery-1.9.1.min.js"; sourceTree = "<group>"; };
+		9DC2EF2A186D823A00204686 /* lte-ie7-24.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "lte-ie7-24.js"; sourceTree = "<group>"; };
+		9DC2EF2C186D823A00204686 /* powerpi.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = powerpi.php; sourceTree = "<group>"; };
+		9DC2EF2E186D823A00204686 /* core.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = core.php; sourceTree = "<group>"; };
+		9DC2EF2F186D823A00204686 /* database.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = database.php; sourceTree = "<group>"; };
+		9DC2EF30186D823A00204686 /* meta.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = meta.php; sourceTree = "<group>"; };
+		9DC2EF31186D823A00204686 /* navigation.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = navigation.php; sourceTree = "<group>"; };
+		9DC2EF32186D823A00204686 /* secure.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = secure.php; sourceTree = "<group>"; };
+		9DC2EF33186D823A00204686 /* template.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = template.php; sourceTree = "<group>"; };
+		9DC2EF35186D823A00204686 /* home.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = home.php; sourceTree = "<group>"; };
+		9DC2EF37186D823A00204686 /* home_help.tpl */ = {isa = PBXFileReference; lastKnownFileType = text; path = home_help.tpl; sourceTree = "<group>"; };
+		9DC2EF38186D823A00204686 /* home_list.tpl */ = {isa = PBXFileReference; lastKnownFileType = text; path = home_list.tpl; sourceTree = "<group>"; };
+		9DC2EF39186D823A00204686 /* home_settings.tpl */ = {isa = PBXFileReference; lastKnownFileType = text; path = home_settings.tpl; sourceTree = "<group>"; };
+		9DC2EF3A186D823A00204686 /* home_weather.tpl */ = {isa = PBXFileReference; lastKnownFileType = text; path = home_weather.tpl; sourceTree = "<group>"; };
+		9DC2EF3C186D823A00204686 /* gpioassigment.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gpioassigment.jpg; sourceTree = "<group>"; };
+		9DC2EF3D186D823A00204686 /* system.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = system.php; sourceTree = "<group>"; };
+		9DC2EF40186D823A00204686 /* .index.html.swp */ = {isa = PBXFileReference; lastKnownFileType = file; path = .index.html.swp; sourceTree = "<group>"; };
+		9DC2EF42186D823A00204686 /* bootstrap.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
+		9DC2EF43186D823A00204686 /* flat-ui.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "flat-ui.css"; sourceTree = "<group>"; };
+		9DC2EF44186D823A00204686 /* flat-ui_orig.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "flat-ui_orig.css"; sourceTree = "<group>"; };
+		9DC2EF45186D823A00204686 /* main.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = main.css; sourceTree = "<group>"; };
+		9DC2EF46186D823A00204686 /* no-more-table.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "no-more-table.css"; sourceTree = "<group>"; };
+		9DC2EF47186D823A00204686 /* no-more.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "no-more.css"; sourceTree = "<group>"; };
+		9DC2EF48186D823A00204686 /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
+		9DC2EF4A186D823A00204686 /* 9k-RPmcnxYEPm8CNFsH2gg.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "9k-RPmcnxYEPm8CNFsH2gg.woff"; sourceTree = "<group>"; };
+		9DC2EF4B186D823A00204686 /* BVtM30trf7q_jfqYeHfjtA.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = BVtM30trf7q_jfqYeHfjtA.woff; sourceTree = "<group>"; };
+		9DC2EF4C186D823A00204686 /* Flat-UI-Icons-16.dev.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Flat-UI-Icons-16.dev.svg"; sourceTree = "<group>"; };
+		9DC2EF4D186D823A00204686 /* Flat-UI-Icons-16.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flat-UI-Icons-16.eot"; sourceTree = "<group>"; };
+		9DC2EF4E186D823A00204686 /* Flat-UI-Icons-16.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Flat-UI-Icons-16.svg"; sourceTree = "<group>"; };
+		9DC2EF4F186D823A00204686 /* Flat-UI-Icons-16.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flat-UI-Icons-16.ttf"; sourceTree = "<group>"; };
+		9DC2EF50186D823A00204686 /* Flat-UI-Icons-16.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flat-UI-Icons-16.woff"; sourceTree = "<group>"; };
+		9DC2EF51186D823A00204686 /* Flat-UI-Icons-24.dev.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Flat-UI-Icons-24.dev.svg"; sourceTree = "<group>"; };
+		9DC2EF52186D823A00204686 /* Flat-UI-Icons-24.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flat-UI-Icons-24.eot"; sourceTree = "<group>"; };
+		9DC2EF53186D823A00204686 /* Flat-UI-Icons-24.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Flat-UI-Icons-24.svg"; sourceTree = "<group>"; };
+		9DC2EF54186D823A00204686 /* Flat-UI-Icons-24.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flat-UI-Icons-24.ttf"; sourceTree = "<group>"; };
+		9DC2EF55186D823A00204686 /* Flat-UI-Icons-24.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flat-UI-Icons-24.woff"; sourceTree = "<group>"; };
+		9DC2EF56186D823A00204686 /* oUan5VrEkpzIazlUe5ieaA.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = oUan5VrEkpzIazlUe5ieaA.woff; sourceTree = "<group>"; };
+		9DC2EF57186D823A00204686 /* wkfQbvfT_02e2IWO3yYueQ.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = wkfQbvfT_02e2IWO3yYueQ.woff; sourceTree = "<group>"; };
+		9DC2EF58186D823A00204686 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		9DC2EF5A186D823A00204686 /* codesend.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = codesend.cpp; sourceTree = "<group>"; };
+		9DC2EF5B186D823A00204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF5C186D823A00204686 /* RCSwitch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RCSwitch.cpp; sourceTree = "<group>"; };
+		9DC2EF5D186D823A00204686 /* RCSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCSwitch.h; sourceTree = "<group>"; };
+		9DC2EF5E186D823A00204686 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		9DC2EF5F186D823A00204686 /* RFSniffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RFSniffer.cpp; sourceTree = "<group>"; };
+		9DC2EF60186D823A00204686 /* send.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = send.cpp; sourceTree = "<group>"; };
+		9DC2EF63186D827400204686 /* bin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bin.cpp; sourceTree = "<group>"; };
+		9DC2EF64186D827400204686 /* dht.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dht.cpp; sourceTree = "<group>"; };
+		9DC2EF65186D827400204686 /* dht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dht.h; sourceTree = "<group>"; };
+		9DC2EF66186D827400204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF68186D827400204686 /* Database.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Database.cpp; sourceTree = "<group>"; };
+		9DC2EF69186D827400204686 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		9DC2EF6A186D827400204686 /* dbuse */ = {isa = PBXFileReference; lastKnownFileType = file; path = dbuse; sourceTree = "<group>"; };
+		9DC2EF6B186D827400204686 /* dbuse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dbuse.cpp; sourceTree = "<group>"; };
+		9DC2EF6C186D827400204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF6D186D827400204686 /* sqdb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sqdb.cpp; sourceTree = "<group>"; };
+		9DC2EF6E186D827400204686 /* sqdb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sqdb.h; sourceTree = "<group>"; };
+		9DC2EF6F186D827400204686 /* weather */ = {isa = PBXFileReference; lastKnownFileType = file; path = weather; sourceTree = "<group>"; };
+		9DC2EF71186D827400204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF72186D827400204686 /* receive_kw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = receive_kw.cpp; sourceTree = "<group>"; };
+		9DC2EF74186D827400204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF75186D827400204686 /* sleep */ = {isa = PBXFileReference; lastKnownFileType = file; path = sleep; sourceTree = "<group>"; };
+		9DC2EF76186D827400204686 /* sleep.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sleep.cpp; sourceTree = "<group>"; };
+		9DC2EF78186D827400204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9DC2EF79186D827400204686 /* picontrol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picontrol.cpp; sourceTree = "<group>"; };
+		9DC2EF7A186D827400204686 /* picontrol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = picontrol.h; sourceTree = "<group>"; };
+		9DC2EF7B186D827400204686 /* powerpi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = powerpi.cpp; sourceTree = "<group>"; };
+		9DC2EF7C186D827400204686 /* settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = settings; sourceTree = "<group>"; };
+		9DC2EF7D186D827400204686 /* structs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = structs.cpp; sourceTree = "<group>"; };
+		9DC2EF7E186D827400204686 /* structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = structs.h; sourceTree = "<group>"; };
+		9DC2EF7F186D827400204686 /* tools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tools.cpp; sourceTree = "<group>"; };
+		9DC2EF80186D827400204686 /* tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tools.h; sourceTree = "<group>"; };
+		9DC2EF81186D827400204686 /* xmlreader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = xmlreader.cpp; sourceTree = "<group>"; };
+		9DC2EF82186D827500204686 /* xmlreader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xmlreader.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9DC2EEC7186D819500204686 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9DC2EEC1186D819500204686 = {
+			isa = PBXGroup;
+			children = (
+				9DC2EEFA186D823A00204686 /* forks */,
+				9DC2EF61186D827400204686 /* autohome */,
+				9DC2EED6186D821500204686 /* misc */,
+			);
+			sourceTree = "<group>";
+		};
+		9DC2EED6186D821500204686 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EED7186D821500204686 /* thermocode.ods */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		9DC2EEFA186D823A00204686 /* forks */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EEFB186D823A00204686 /* 433.92-Raspberry-Pi */,
+				9DC2EF08186D823A00204686 /* adafruit_dht_driver */,
+				9DC2EF0C186D823A00204686 /* powerpi */,
+				9DC2EF59186D823A00204686 /* RPi_utils */,
+			);
+			path = forks;
+			sourceTree = "<group>";
+		};
+		9DC2EEFB186D823A00204686 /* 433.92-Raspberry-Pi */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EEFC186D823A00204686 /* COPYING */,
+				9DC2EEFD186D823A00204686 /* genLirc.cpp */,
+				9DC2EEFE186D823A00204686 /* learn.cpp */,
+				9DC2EEFF186D823A00204686 /* Makefile */,
+				9DC2EF00186D823A00204686 /* README.md */,
+				9DC2EF01186D823A00204686 /* receive */,
+				9DC2EF02186D823A00204686 /* receive.cpp */,
+				9DC2EF03186D823A00204686 /* receiveElro */,
+				9DC2EF04186D823A00204686 /* receiveElro.cpp */,
+				9DC2EF05186D823A00204686 /* send.cpp */,
+				9DC2EF06186D823A00204686 /* sendElro */,
+				9DC2EF07186D823A00204686 /* sendElro.cpp */,
+			);
+			path = "433.92-Raspberry-Pi";
+			sourceTree = "<group>";
+		};
+		9DC2EF08186D823A00204686 /* adafruit_dht_driver */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF09186D823A00204686 /* Adafruit_DHT */,
+				9DC2EF0A186D823A00204686 /* Adafruit_DHT.c */,
+				9DC2EF0B186D823A00204686 /* Makefile */,
+			);
+			path = adafruit_dht_driver;
+			sourceTree = "<group>";
+		};
+		9DC2EF0C186D823A00204686 /* powerpi */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF0D186D823A00204686 /* bin */,
+				9DC2EF0E186D823A00204686 /* dev */,
+				9DC2EF0F186D823A00204686 /* init */,
+				9DC2EF11186D823A00204686 /* Makefile */,
+				9DC2EF12186D823A00204686 /* README.md */,
+				9DC2EF13186D823A00204686 /* src */,
+				9DC2EF1E186D823A00204686 /* www */,
+			);
+			path = powerpi;
+			sourceTree = "<group>";
+		};
+		9DC2EF0D186D823A00204686 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		9DC2EF0E186D823A00204686 /* dev */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = dev;
+			sourceTree = "<group>";
+		};
+		9DC2EF0F186D823A00204686 /* init */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF10186D823A00204686 /* powerpi */,
+			);
+			path = init;
+			sourceTree = "<group>";
+		};
+		9DC2EF13186D823A00204686 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF14186D823A00204686 /* picontrol.cpp */,
+				9DC2EF15186D823A00204686 /* picontrol.h */,
+				9DC2EF16186D823A00204686 /* powerpi.cpp */,
+				9DC2EF17186D823A00204686 /* settings */,
+				9DC2EF18186D823A00204686 /* structs.cpp */,
+				9DC2EF19186D823A00204686 /* structs.h */,
+				9DC2EF1A186D823A00204686 /* tools.cpp */,
+				9DC2EF1B186D823A00204686 /* tools.h */,
+				9DC2EF1C186D823A00204686 /* xmlreader.cpp */,
+				9DC2EF1D186D823A00204686 /* xmlreader.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		9DC2EF1E186D823A00204686 /* www */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF1F186D823A00204686 /* conf */,
+				9DC2EF21186D823A00204686 /* index.php */,
+				9DC2EF22186D823A00204686 /* js */,
+				9DC2EF2B186D823A00204686 /* lib */,
+				9DC2EF2D186D823A00204686 /* modules */,
+				9DC2EF34186D823A00204686 /* pages */,
+				9DC2EF3B186D823A00204686 /* stuff */,
+				9DC2EF3D186D823A00204686 /* system.php */,
+				9DC2EF3E186D823A00204686 /* themes */,
+			);
+			path = www;
+			sourceTree = "<group>";
+		};
+		9DC2EF1F186D823A00204686 /* conf */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF20186D823A00204686 /* config.php */,
+			);
+			path = conf;
+			sourceTree = "<group>";
+		};
+		9DC2EF22186D823A00204686 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF23186D823A00204686 /* base64.js */,
+				9DC2EF24186D823A00204686 /* bootstrap.min.js */,
+				9DC2EF25186D823A00204686 /* flatui-checkbox.js */,
+				9DC2EF26186D823A00204686 /* html5shiv.js */,
+				9DC2EF27186D823A00204686 /* icon-font-ie7.js */,
+				9DC2EF28186D823A00204686 /* jquery-1.8.2.min.js */,
+				9DC2EF29186D823A00204686 /* jquery-1.9.1.min.js */,
+				9DC2EF2A186D823A00204686 /* lte-ie7-24.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		9DC2EF2B186D823A00204686 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF2C186D823A00204686 /* powerpi.php */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		9DC2EF2D186D823A00204686 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF2E186D823A00204686 /* core.php */,
+				9DC2EF2F186D823A00204686 /* database.php */,
+				9DC2EF30186D823A00204686 /* meta.php */,
+				9DC2EF31186D823A00204686 /* navigation.php */,
+				9DC2EF32186D823A00204686 /* secure.php */,
+				9DC2EF33186D823A00204686 /* template.php */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		9DC2EF34186D823A00204686 /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF35186D823A00204686 /* home.php */,
+				9DC2EF36186D823A00204686 /* tpl */,
+			);
+			path = pages;
+			sourceTree = "<group>";
+		};
+		9DC2EF36186D823A00204686 /* tpl */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF37186D823A00204686 /* home_help.tpl */,
+				9DC2EF38186D823A00204686 /* home_list.tpl */,
+				9DC2EF39186D823A00204686 /* home_settings.tpl */,
+				9DC2EF3A186D823A00204686 /* home_weather.tpl */,
+			);
+			path = tpl;
+			sourceTree = "<group>";
+		};
+		9DC2EF3B186D823A00204686 /* stuff */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF3C186D823A00204686 /* gpioassigment.jpg */,
+			);
+			path = stuff;
+			sourceTree = "<group>";
+		};
+		9DC2EF3E186D823A00204686 /* themes */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF3F186D823A00204686 /* default */,
+			);
+			path = themes;
+			sourceTree = "<group>";
+		};
+		9DC2EF3F186D823A00204686 /* default */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF40186D823A00204686 /* .index.html.swp */,
+				9DC2EF41186D823A00204686 /* css */,
+				9DC2EF48186D823A00204686 /* favicon.ico */,
+				9DC2EF49186D823A00204686 /* fonts */,
+				9DC2EF58186D823A00204686 /* index.html */,
+			);
+			path = default;
+			sourceTree = "<group>";
+		};
+		9DC2EF41186D823A00204686 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF42186D823A00204686 /* bootstrap.css */,
+				9DC2EF43186D823A00204686 /* flat-ui.css */,
+				9DC2EF44186D823A00204686 /* flat-ui_orig.css */,
+				9DC2EF45186D823A00204686 /* main.css */,
+				9DC2EF46186D823A00204686 /* no-more-table.css */,
+				9DC2EF47186D823A00204686 /* no-more.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		9DC2EF49186D823A00204686 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF4A186D823A00204686 /* 9k-RPmcnxYEPm8CNFsH2gg.woff */,
+				9DC2EF4B186D823A00204686 /* BVtM30trf7q_jfqYeHfjtA.woff */,
+				9DC2EF4C186D823A00204686 /* Flat-UI-Icons-16.dev.svg */,
+				9DC2EF4D186D823A00204686 /* Flat-UI-Icons-16.eot */,
+				9DC2EF4E186D823A00204686 /* Flat-UI-Icons-16.svg */,
+				9DC2EF4F186D823A00204686 /* Flat-UI-Icons-16.ttf */,
+				9DC2EF50186D823A00204686 /* Flat-UI-Icons-16.woff */,
+				9DC2EF51186D823A00204686 /* Flat-UI-Icons-24.dev.svg */,
+				9DC2EF52186D823A00204686 /* Flat-UI-Icons-24.eot */,
+				9DC2EF53186D823A00204686 /* Flat-UI-Icons-24.svg */,
+				9DC2EF54186D823A00204686 /* Flat-UI-Icons-24.ttf */,
+				9DC2EF55186D823A00204686 /* Flat-UI-Icons-24.woff */,
+				9DC2EF56186D823A00204686 /* oUan5VrEkpzIazlUe5ieaA.woff */,
+				9DC2EF57186D823A00204686 /* wkfQbvfT_02e2IWO3yYueQ.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		9DC2EF59186D823A00204686 /* RPi_utils */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF5A186D823A00204686 /* codesend.cpp */,
+				9DC2EF5B186D823A00204686 /* Makefile */,
+				9DC2EF5C186D823A00204686 /* RCSwitch.cpp */,
+				9DC2EF5D186D823A00204686 /* RCSwitch.h */,
+				9DC2EF5E186D823A00204686 /* README.md */,
+				9DC2EF5F186D823A00204686 /* RFSniffer.cpp */,
+				9DC2EF60186D823A00204686 /* send.cpp */,
+			);
+			path = RPi_utils;
+			sourceTree = "<group>";
+		};
+		9DC2EF61186D827400204686 /* autohome */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF62186D827400204686 /* adah */,
+				9DC2EF67186D827400204686 /* database */,
+				9DC2EF70186D827400204686 /* reciev */,
+				9DC2EF73186D827400204686 /* sleep */,
+				9DC2EF77186D827400204686 /* xml */,
+			);
+			path = autohome;
+			sourceTree = "<group>";
+		};
+		9DC2EF62186D827400204686 /* adah */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF63186D827400204686 /* bin.cpp */,
+				9DC2EF64186D827400204686 /* dht.cpp */,
+				9DC2EF65186D827400204686 /* dht.h */,
+				9DC2EF66186D827400204686 /* Makefile */,
+			);
+			path = adah;
+			sourceTree = "<group>";
+		};
+		9DC2EF67186D827400204686 /* database */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF68186D827400204686 /* Database.cpp */,
+				9DC2EF69186D827400204686 /* Database.h */,
+				9DC2EF6A186D827400204686 /* dbuse */,
+				9DC2EF6B186D827400204686 /* dbuse.cpp */,
+				9DC2EF6C186D827400204686 /* Makefile */,
+				9DC2EF6D186D827400204686 /* sqdb.cpp */,
+				9DC2EF6E186D827400204686 /* sqdb.h */,
+				9DC2EF6F186D827400204686 /* weather */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		9DC2EF70186D827400204686 /* reciev */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF71186D827400204686 /* Makefile */,
+				9DC2EF72186D827400204686 /* receive_kw.cpp */,
+			);
+			path = reciev;
+			sourceTree = "<group>";
+		};
+		9DC2EF73186D827400204686 /* sleep */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF74186D827400204686 /* Makefile */,
+				9DC2EF75186D827400204686 /* sleep */,
+				9DC2EF76186D827400204686 /* sleep.cpp */,
+			);
+			path = sleep;
+			sourceTree = "<group>";
+		};
+		9DC2EF77186D827400204686 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				9DC2EF78186D827400204686 /* Makefile */,
+				9DC2EF79186D827400204686 /* picontrol.cpp */,
+				9DC2EF7A186D827400204686 /* picontrol.h */,
+				9DC2EF7B186D827400204686 /* powerpi.cpp */,
+				9DC2EF7C186D827400204686 /* settings */,
+				9DC2EF7D186D827400204686 /* structs.cpp */,
+				9DC2EF7E186D827400204686 /* structs.h */,
+				9DC2EF7F186D827400204686 /* tools.cpp */,
+				9DC2EF80186D827400204686 /* tools.h */,
+				9DC2EF81186D827400204686 /* xmlreader.cpp */,
+				9DC2EF82186D827500204686 /* xmlreader.h */,
+			);
+			path = xml;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9DC2EEC9186D819500204686 /* autohome-pi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DC2EED3186D819500204686 /* Build configuration list for PBXNativeTarget "autohome-pi" */;
+			buildPhases = (
+				9DC2EEC6186D819500204686 /* Sources */,
+				9DC2EEC7186D819500204686 /* Frameworks */,
+				9DC2EEC8186D819500204686 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "autohome-pi";
+			productName = "autohome-pi";
+			productReference = 9DC2EECA186D819500204686 /* autohome-pi */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9DC2EEC2186D819500204686 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Christopher Täufert";
+			};
+			buildConfigurationList = 9DC2EEC5186D819500204686 /* Build configuration list for PBXProject "autohome-pi" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9DC2EEC1186D819500204686;
+			productRefGroup = 9DC2EEC1186D819500204686;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9DC2EEC9186D819500204686 /* autohome-pi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9DC2EEC6186D819500204686 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9DC2EED1186D819500204686 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9DC2EED2186D819500204686 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9DC2EED4186D819500204686 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9DC2EED5186D819500204686 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9DC2EEC5186D819500204686 /* Build configuration list for PBXProject "autohome-pi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DC2EED1186D819500204686 /* Debug */,
+				9DC2EED2186D819500204686 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DC2EED3186D819500204686 /* Build configuration list for PBXNativeTarget "autohome-pi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DC2EED4186D819500204686 /* Debug */,
+				9DC2EED5186D819500204686 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9DC2EEC2186D819500204686 /* Project object */;
+}
