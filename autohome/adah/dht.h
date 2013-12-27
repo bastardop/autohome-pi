@@ -6,12 +6,12 @@
 //
 //
 
-#ifndef ____dht__
-#define ____dht__
+#ifndef DHT_READ
+#define DHT_READ
 
 #include <vector>
 #include <iostream>
 
 std::vector<float> readDHT(int, int);
 
-#endif /* defined(____dht__) */
+#endif 
