@@ -17,8 +17,8 @@
 #include <unistd.h>
 
 using namespace std;
-int MAXTIMINGS = 100;
 
+int MAXTIMINGS = 100;
 int bits[250], data[100];
 int bitidx = 0;
 
@@ -67,20 +67,14 @@ vector<float> readDHT(int type, int pin){
                 j++;
             }
         }
-
         if ((j >= 39) &&
             (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)) ) {
             // found good data
             back.clear();
-            if (type == 11){
-                try{
+            if (type == 11) {
                 f = float(data[2]); //DHT11 is sending readable data
-                    h = float(data[0]);}
-                catch(...){
-                    cout << "22" << endl;
-                }
+                h = float(data[0]);
             }
-                
             if (type == 22) {
                 
                 h = data[0] * 256 + data[1]; //for DHT22 the recieved data need some additional chaning before output

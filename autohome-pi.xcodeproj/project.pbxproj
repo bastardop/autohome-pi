@@ -19,7 +19,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9DC2EECA186D819500204686 /* autohome-pi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "autohome-pi"; path = "/Users/christopher/github/autohome-pi/build/Debug/autohome-pi"; sourceTree = "<absolute>"; };
 		9DC2EED7186D821500204686 /* thermocode.ods */ = {isa = PBXFileReference; lastKnownFileType = file; path = thermocode.ods; sourceTree = "<group>"; };
 		9DC2EEFC186D823A00204686 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		9DC2EEFD186D823A00204686 /* genLirc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = genLirc.cpp; sourceTree = "<group>"; };
@@ -107,8 +106,6 @@
 		9DC2EF64186D827400204686 /* dht.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dht.cpp; sourceTree = "<group>"; };
 		9DC2EF65186D827400204686 /* dht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dht.h; sourceTree = "<group>"; };
 		9DC2EF66186D827400204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		9DC2EF68186D827400204686 /* Database.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Database.cpp; sourceTree = "<group>"; };
-		9DC2EF69186D827400204686 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		9DC2EF6A186D827400204686 /* dbuse */ = {isa = PBXFileReference; lastKnownFileType = file; path = dbuse; sourceTree = "<group>"; };
 		9DC2EF6B186D827400204686 /* dbuse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dbuse.cpp; sourceTree = "<group>"; };
 		9DC2EF6C186D827400204686 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -131,6 +128,7 @@
 		9DC2EF80186D827400204686 /* tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tools.h; sourceTree = "<group>"; };
 		9DC2EF81186D827400204686 /* xmlreader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = xmlreader.cpp; sourceTree = "<group>"; };
 		9DC2EF82186D827500204686 /* xmlreader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xmlreader.h; sourceTree = "<group>"; };
+		9DEB59BE186E11A100B2E937 /* autohome-pi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "autohome-pi"; path = "/Users/christopher/github/autohome-pi/build/Debug/autohome-pi"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,7 +415,7 @@
 				9DC2EF67186D827400204686 /* database */,
 				9DC2EF70186D827400204686 /* reciev */,
 				9DC2EF73186D827400204686 /* sleep */,
-				9DC2EF77186D827400204686 /* xml */,
+				9DC2EF77186D827400204686 /* xml (powerpi fork) */,
 			);
 			path = autohome;
 			sourceTree = "<group>";
@@ -436,8 +434,6 @@
 		9DC2EF67186D827400204686 /* database */ = {
 			isa = PBXGroup;
 			children = (
-				9DC2EF68186D827400204686 /* Database.cpp */,
-				9DC2EF69186D827400204686 /* Database.h */,
 				9DC2EF6A186D827400204686 /* dbuse */,
 				9DC2EF6B186D827400204686 /* dbuse.cpp */,
 				9DC2EF6C186D827400204686 /* Makefile */,
@@ -467,7 +463,7 @@
 			path = sleep;
 			sourceTree = "<group>";
 		};
-		9DC2EF77186D827400204686 /* xml */ = {
+		9DC2EF77186D827400204686 /* xml (powerpi fork) */ = {
 			isa = PBXGroup;
 			children = (
 				9DC2EF78186D827400204686 /* Makefile */,
@@ -482,6 +478,7 @@
 				9DC2EF81186D827400204686 /* xmlreader.cpp */,
 				9DC2EF82186D827500204686 /* xmlreader.h */,
 			);
+			name = "xml (powerpi fork)";
 			path = xml;
 			sourceTree = "<group>";
 		};
@@ -502,7 +499,7 @@
 			);
 			name = "autohome-pi";
 			productName = "autohome-pi";
-			productReference = 9DC2EECA186D819500204686 /* autohome-pi */;
+			productReference = 9DEB59BE186E11A100B2E937 /* autohome-pi */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -643,6 +640,7 @@
 				9DC2EED5186D819500204686 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
