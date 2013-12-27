@@ -1,9 +1,9 @@
-
 # Compiled Object files
 
 # Mac stuff 
 .DS_Store
 .~lock.*
+.xcodeproj
 
 *.slo
 *.lo

@@ -4,62 +4,44 @@
 //
 //  Created by Christopher Täufert on 26.12.13.
 //
-//
-
-//#include "dht.h"
-
-//  How to access GPIO registers from C-code on the Raspberry-Pi
-//  Example program
-//  15-January-2012
-//  Dom and Gert
-//
-
-
-#define BCM2708_PERI_BASE        0x20000000
-#define GPIO_BASE                (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
-
+//  original from Adafruit_DHT_Drive C-File
+//  changed that into C++-File and uses wiringPi instead of BCM2835
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <wiringPi.h>
-#include <bcm2835.h>
 #include <iostream>
 #include <stdint.h>
 #include <vector>
 
 int MAXTIMINGS = 100;
 
-//#define DEBUG
-
-
 int bits[250], data[100];
 int bitidx = 0;
 
 float f, h;
 
+vector<float> back;
+
 using namespace std;
-
-
 
 vector<float> readDHT(int type, int pin){
         int counter = 0;
         int laststate = HIGH;
         int j=0;
-    vector<float> back;
-        // Set GPIO pin to output
-    if(wiringPiSetup()==-1)
+        back.clear();
+    
+        if(wiringPiSetup()==-1) //setting wirinPi up
         exit(1);
 
-        //bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_OUTP);
-    pinMode(pin,OUTPUT);
+        pinMode(pin,OUTPUT); //set gpio pin to OUTPUT
         digitalWrite(pin, HIGH);
-        usleep(500000);  // 500 ms
+        usleep(500000);  // wait 500 ms
         digitalWrite(pin, LOW);
-        usleep(20000);
-        
-        //bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_INPT);
-    pinMode(pin, INPUT);
+        usleep(20000);   // wait 200 ms
+    
+        pinMode(pin, INPUT); // set gpio to INPUT
         data[0] = data[1] = data[2] = data[3] = data[4] = 0;
         
         // wait for pin to drop?
@@ -72,12 +54,12 @@ vector<float> readDHT(int type, int pin){
             counter = 0;
             while ( digitalRead(pin) == laststate) {
                 counter++;
-                //nanosleep(1);         // overclocking might change this?
                 if (counter == 1000)
                     break;
             }
             laststate = digitalRead(pin);
-            if (counter == 1000) break;
+            if (counter == 1000)
+                break;
             bits[bitidx++] = counter;
             
             if ((i>3) && (i%2 == 0)) {
@@ -91,16 +73,15 @@ vector<float> readDHT(int type, int pin){
     
         if ((j >= 39) &&
             (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)) ) {
-            // yay!
+            // found good data
             if (type == 11){
-                f = float(data[2]);
+                f = float(data[2]); //DHT11 is sending readable data
                 h = float(data[0]);
-                
             }
                 
             if (type == 22) {
                 
-                h = data[0] * 256 + data[1];
+                h = data[0] * 256 + data[1]; //for DHT22 the recieved data need some additional chaning before output
                 h /= 10;
                 
                 f = (data[2] & 0x7F)* 256 + data[3];
@@ -108,8 +89,8 @@ vector<float> readDHT(int type, int pin){
                 if (data[2] & 0x80)  f *= -1;
                 
             }
-            back.push_back(f);
+            back.push_back(f); //writing data into output
             back.push_back(h);
         }
-    return back;
+    return back; //returning vector with data
 }
