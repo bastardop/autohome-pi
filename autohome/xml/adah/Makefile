@@ -1,5 +1,5 @@
-SOURCE = dht.cpp -lwiringPi
-APP = dht.bin
+SOURCE = bin.cpp dht.cpp -lwiringPi
+APP = bin.bin
 CC = g++
 
 all: $(APP)
