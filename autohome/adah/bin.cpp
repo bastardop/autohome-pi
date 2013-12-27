@@ -89,7 +89,7 @@ int main(void){
                     j++;
                 }
             }
-        } catch(...) { return back;}
+        } catch(...) { cout << "22" << endl;}
         if ((j >= 39) &&
             (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)) ) {
             // found good data
@@ -98,7 +98,7 @@ int main(void){
                     f = float(data[2]); //DHT11 is sending readable data
                     h = float(data[0]);}
                 catch(...){
-                    return back;
+                    cout << "33" << endl;;
                 }
             }
             
