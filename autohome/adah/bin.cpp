@@ -35,20 +35,24 @@ int main(void){
         cout << "start" << endl;
         temp = readDHT(11, 0); //caling readDHT() from dht.cpp
         cout << "temp: " << temp[0] << "humi " << temp[1] << endl;
-        sqdb::Db db("/var/www/liteadmin/weather");
-        try {
-            sqdb::Statement i = db.Query("insert into data (temp, humi, sender_id, time) values (?, ?, ?, ?)");
-            i.Bind(1, temp[0]);
-            i.Bind(2, temp[1]);
-            i.Bind(3, "999");
-            i.Bind(4, to_string(new_time));
-            i.Next();
-        }
-        catch ( const sqdb::Exception& e ){
-            sqdb::Exception excep(sqdb::Exception&);
-            cout << "Fehler ist aufgetreten " << excep << endl;
+        if (temp[0] != 0){
+            sqdb::Db db("/var/www/liteadmin/weather");
+            try {
+                sqdb::Statement i = db.Query("insert into data (temp, humi, sender_id, time) values (?, ?, ?, ?)");
+                i.Bind(1, temp[0]);
+                i.Bind(2, temp[1]);
+                i.Bind(3, "999");
+                i.Bind(4, to_string(new_time));
+                i.Next();
+            }
+            catch ( const sqdb::Exception& e ){
+                sqdb::Exception excep(sqdb::Exception&);
+                cout << "Fehler ist aufgetreten " << excep << endl;
+            }
+
+            this_thread::sleep_for (chrono::seconds(20));
+    
         }
 
-        this_thread::sleep_for (chrono::seconds(20));
     }
 }
