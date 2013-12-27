@@ -6,7 +6,7 @@ all: $(APP)
 
 $(APP): $(SOURCE)
 #	chmod -R 755 *
-	$(CC) $(SOURCE) -o $(APP)
+	$(CC) $(SOURCE) -std=c++11 -o $(APP)
 
 clean:
 	rm -fv ./dbuse
