@@ -25,18 +25,14 @@ int bitidx = 0;
 float f = 0;
 float h = 0;
 
-vector<float> back;
-
 vector<float> readDHT(int type, int pin){
         int counter = 0;
         int laststate = HIGH;
         int j=0;
-	bitidx = 0;
-        back.clear();
-try {
+        bitidx = 0;
+        vector<float> back = {0, 0};
+
         pinMode(pin,OUTPUT); //set gpio pin to OUTPUT
-}
-catch(...){ cout << "11" << endl;}
         digitalWrite(pin, HIGH);
         usleep(500000);  // wait 500 ms
         digitalWrite(pin, LOW);
@@ -49,7 +45,7 @@ catch(...){ cout << "11" << endl;}
         while (digitalRead(pin) == 1) {
             usleep(1);
         }
-try {        
+    
         // read data!
         for (int i=0; i< MAXTIMINGS; i++) {
             counter = 0;
@@ -71,9 +67,7 @@ try {
                 j++;
             }
         }
-} catch(...) { cout << "11" << endl;
-}
-    back.push_back(0);
+
         if ((j >= 39) &&
             (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)) ) {
             // found good data

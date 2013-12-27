@@ -32,17 +32,10 @@ int main(void){
     
     while(1){
         time(&new_time);
-    cout << "start" << endl;
-        try {temp = readDHT(11, 0); //caling readDHT() from dht.cpp
-        } catch(...){
-            cout << "fehler beim auslesen" << endl;
-        }
-try {
-    cout << "temp: " << temp[0] << "humi " << temp[1] << endl;
-} catch(...){
-cout << "obviusly wrong data" << endl;}     
-
-   sqdb::Db db("/var/www/liteadmin/weather");
+        cout << "start" << endl;
+        temp = readDHT(11, 0); //caling readDHT() from dht.cpp
+        cout << "temp: " << temp[0] << "humi " << temp[1] << endl;
+        sqdb::Db db("/var/www/liteadmin/weather");
         try {
             sqdb::Statement i = db.Query("insert into data (temp, humi, sender_id, time) values (?, ?, ?, ?)");
             i.Bind(1, temp[0]);
