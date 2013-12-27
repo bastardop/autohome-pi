@@ -37,7 +37,7 @@
 #include <iterator>
 #include <time.h>
 #include <iomanip>
-#include <../database/sqdb.h>
+#include </home/pi/autohome-pi/autohome/database/sqdb.h>
 
 
 using namespace std;
@@ -279,14 +279,13 @@ int main(int argc, char **argv) {
                                 i.Bind(2, tempdata[5]);
                                 i.Bind(3, tempdata[1]);
                                 i.Bind(4, tempdata[0]);
-                                i.Bind(5, new_time);
+                                i.Bind(5, to_string(new_time));
                                 i.Next();
                             }
                             catch ( const sqdb::Exception& e ){
                                 sqdb::Exception excep(sqdb::Exception&);
                                 cout << "Fehler ist aufgetreten " << excep << endl;
                             }
-                            delete db;
                             
                         } else if (diff_time > 10) {
                             cout << "id " << tempdata[0] << endl;
@@ -305,14 +304,13 @@ int main(int argc, char **argv) {
                                 i.Bind(2, tempdata[5]);
                                 i.Bind(3, tempdata[1]);
                                 i.Bind(4, tempdata[0]);
-                                i.Bind(5, new_time);
+                                i.Bind(5, to_string(new_time));
                                 i.Next();
                             }
                             catch ( const sqdb::Exception& e ){
                                 sqdb::Exception excep(sqdb::Exception&);
                                 cout << "Fehler ist aufgetreten " << excep << endl;
                             }
-                            delete db;
 
                         }
                     }
