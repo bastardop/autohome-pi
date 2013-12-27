@@ -14,6 +14,7 @@
 #include <iostream>
 #include <stdint.h>
 #include <vector>
+#include <unistd.h>
 
 using namespace std;
 int MAXTIMINGS = 100;
