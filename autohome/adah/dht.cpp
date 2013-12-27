@@ -22,7 +22,8 @@ int MAXTIMINGS = 100;
 int bits[250], data[100];
 int bitidx = 0;
 
-float f, h;
+float f = 0;
+float h = 0;
 
 vector<float> back;
 
@@ -72,8 +73,12 @@ vector<float> readDHT(int type, int pin){
             (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)) ) {
             // found good data
             if (type == 11){
+                try{
                 f = float(data[2]); //DHT11 is sending readable data
-                h = float(data[0]);
+                    h = float(data[0]);}
+                catch(...){
+                    cout << "error in filling read dht" << endl;
+                }
             }
                 
             if (type == 22) {
