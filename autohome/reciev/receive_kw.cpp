@@ -271,6 +271,21 @@ int main(int argc, char **argv) {
                             old_id = tempdata[0];
                             old_channel = tempdata[1];
                             old_time = new_time;
+                            sqdb::Db db("/var/www/liteadmin/weather");
+                            try {
+                                sqdb::Statement i = db.Query("insert into data (temp, humi, channel_id, sender_id, time) values (?, ?, ?, ?, ?)");
+                                i.Bind(1, tempdata[3]);
+                                i.Bind(2, tempdata[5]);
+                                i.Bind(3, tempdata[1]);
+                                i.Bind(4, tempdata[0]);
+                                i.Bind(5, new_time);
+                                i.Next();
+                            }
+                            catch ( const sqdb::Exception& e ){
+                                sqdb::Exception excep(sqdb::Exception&);
+                                cout << "Fehler ist aufgetreten " << excep << endl;
+                            }
+                            delete db;
                             
                         } else if (diff_time > 10) {
                             cout << "id " << tempdata[0] << endl;
@@ -282,6 +297,22 @@ int main(int argc, char **argv) {
                             old_id = tempdata[0];
                             old_channel = tempdata[1];
                             old_time = new_time;
+                            sqdb::Db db("/var/www/liteadmin/weather");
+                            try {
+                                sqdb::Statement i = db.Query("insert into data (temp, humi, channel_id, sender_id, time) values (?, ?, ?, ?, ?)");
+                                i.Bind(1, tempdata[3]);
+                                i.Bind(2, tempdata[5]);
+                                i.Bind(3, tempdata[1]);
+                                i.Bind(4, tempdata[0]);
+                                i.Bind(5, new_time);
+                                i.Next();
+                            }
+                            catch ( const sqdb::Exception& e ){
+                                sqdb::Exception excep(sqdb::Exception&);
+                                cout << "Fehler ist aufgetreten " << excep << endl;
+                            }
+                            delete db;
+
                         }
                     }
 				
