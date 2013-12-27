@@ -33,6 +33,8 @@ float h = 0;
 int type = 11;
 int pin = 5;
 vector<float> temp;
+vector<float> back;
+
 
 time_t new_time;
 
