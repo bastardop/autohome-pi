@@ -31,14 +31,17 @@ vector<float> readDHT(int type, int pin){
         int counter = 0;
         int laststate = HIGH;
         int j=0;
+	bitidx = 0;
         back.clear();
-
+try {
         pinMode(pin,OUTPUT); //set gpio pin to OUTPUT
+}
+catch(...){ cout << "11" << endl;}
         digitalWrite(pin, HIGH);
         usleep(500000);  // wait 500 ms
         digitalWrite(pin, LOW);
-        usleep(20000);   // wait 200 ms
-    
+        usleep(20000);   // wait 20 ms
+
         pinMode(pin, INPUT); // set gpio to INPUT
         data[0] = data[1] = data[2] = data[3] = data[4] = 0;
         
@@ -46,7 +49,7 @@ vector<float> readDHT(int type, int pin){
         while (digitalRead(pin) == 1) {
             usleep(1);
         }
-        
+try {        
         // read data!
         for (int i=0; i< MAXTIMINGS; i++) {
             counter = 0;
@@ -68,7 +71,7 @@ vector<float> readDHT(int type, int pin){
                 j++;
             }
         }
-    
+    } catch(...) { return back;}
         if ((j >= 39) &&
             (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF)) ) {
             // found good data
@@ -77,7 +80,7 @@ vector<float> readDHT(int type, int pin){
                 f = float(data[2]); //DHT11 is sending readable data
                     h = float(data[0]);}
                 catch(...){
-                    cout << "error in filling read dht" << endl;
+                   return back;
                 }
             }
                 

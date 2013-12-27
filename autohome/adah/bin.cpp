@@ -34,7 +34,7 @@ int main(void){
     while(1){
         time(&new_time);
     cout << "start" << endl;
-        try {temp = readDHT(11, 0); //caling readDHT() from dht.cpp
+        try {temp = readDHT(11, 5); //caling readDHT() from dht.cpp
         } catch(...){
             cout << "fehler beim auslesen" << endl;
         }
