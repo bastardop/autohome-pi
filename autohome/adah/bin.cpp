@@ -45,8 +45,7 @@ int main(void){
                     i.Next();
                 }
                 catch ( const sqdb::Exception& e ){
-                    sqdb::Exception excep(sqdb::Exception&);
-                    cout << "Fehler ist aufgetreten " << excep << endl;
+                    cout << "Fehler ist in SQL aufgetreten " << endl;
                 }
             // i++;
             }
