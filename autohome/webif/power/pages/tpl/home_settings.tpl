@@ -60,6 +60,45 @@ $(document).ready(function() {
     }
   });
     
+    // ### Wetter ###
+  $('#wetter_submit').click(function(){
+    var name = $('#wetter_name').val();
+    var chan = $('#channel_id').val();
+    var sender = $('#sender_id').val();
+   
+    if(name=='' || chan=='' || sender=='') {
+      alert('Please enter name and choose gpio');
+      return;
+    }
+    
+    $.get('[BASEDIR]/lib/powerpi.php?action=addwetter&name='+name+'&chan='+chan+'&sender='+sender, function() {
+      window.location.reload();
+    });
+  });
+  
+  $('#wetter_new').click(function(){
+  
+    $.get('[BASEDIR]/lib/powerpi.php?action=newwetter', function() {
+      window.location.reload();
+    });
+  });
+  
+  
+  $('.wetter_delete').click(function(){
+    var name = $(this).attr('wetter-name');
+    var id = $(this).attr('wetter-id');
+    
+    if(name=='' || id=='') {
+      alert('wetter information incomplete');
+      return;
+    }
+    if(confirm("Sure? "+name+"bla")) {
+      $.get('[BASEDIR]/lib/powerpi.php?action=deletewetter&name='+name, function() {
+        window.location.reload();
+      });
+    }
+  });
+  
   // ### Scheduler ###
   $('#schedule_submit').click(function(){
 
@@ -103,7 +142,7 @@ $(document).ready(function() {
 
 
 </script>
-
+[SCRIPT2]
 
   <div class="container-fluid">
     <h1>Settings</h1>
@@ -118,6 +157,7 @@ $(document).ready(function() {
 		</thead>
     <tbody>
       [SOCKETTABLE]
+     
       <tr> 
         <td class="add center"><input id="socket_name" type="text" value="" placeholder="Name" class="span3 nomargb fullwidth"></td>
         <td class="add center"><input id="socket_code" type="text" value="" placeholder="Code (e.g. 11001A)" class="span3 nomargb"></td>
@@ -181,6 +221,18 @@ $(document).ready(function() {
                 </thead>
     <tbody>
       [WEATHERTABLE]
+       <tr> 
+        <td class="add center"><input id="wetter_name" type="text" value="" placeholder="Name" class="span3 nomargb fullwidth"></td>
+        <td class="add center"><input id="sender_id" type="text" value="" placeholder="Sender ID" class="span3 nomargb"></td>
+        <td class="add center"><input id="channel_id" type="text" value="" placeholder="Channel ID (0 für DHT)" class="span3 nomargb"></td>
+        <td class="add center"><a id="wetter_submit" href="#" class="btn btn-large btn-block btn-primary" style="float:none;">Add</a></td>
+      </tr>
+       <tr> 
+        <td class="add center"></td>
+        <td class="add center">Sender ID für DHT ist Dreistellig</td>
+        <td class="add center">Neue Funksender Anzeigen -></td>
+        <td class="add center"><a id="wetter_new" href="index.php?page=home&action=settings&wetter=new" class="btn btn-large btn-block btn-primary" style="float:none;"> List New</a></td>
+      </tr>
 </tbody>
 </table>
 

@@ -1,5 +1,4 @@
 <?php
-
 class Home
 {
   var $app;
@@ -104,7 +103,7 @@ class Home
 
 // ### WETTER Settings ###
 try {
-$db = new PDO('sqlite:/var/www/liteadmin/weather');
+$db = new PDO($this->app->Conf->DB_FILE);
 $db->setAttribute(PDO::ATTR_ERRMODE,
                  PDO::ERRMODE_EXCEPTION);
 $result = $db->query('SELECT * FROM location');
@@ -114,7 +113,8 @@ $result = $db->query('SELECT * FROM location');
     foreach($result as $row) {
       $weather_table .= "<tr><td>{$row['name']}</td>
                         <td>{$row['sender_id']}</td>
-			<td>{$row['channel_id']}</td></tr>";
+			<td>{$row['channel_id']}</td>
+			<td><a wetter-name=\"{$row['name']}\" wetter-id=\"{$row['sender_id']}\" href=\"#\" class=\"wetter_delete btn btn-large btn-block btn-danger\" style=\"float:none;\"><span class=\"fui-cross-16\"></span></a></td></tr>";;
                       }
    // $weather_out = "<ul class=\"buttonlist\">{$weather_out}</ul>";
 
@@ -124,7 +124,32 @@ catch(PDOException $e) {
 $weater_table = $e->getMessage();
 }
   $this->app->Tpl->Set('WEATHERTABLE', $weather_table);
-    
+  
+  $new_wetter = Get('wetter');;
+  $scr ="";
+  if ($new_wetter == "new") {
+  $db = new PDO($this->app->Conf->DB_FILE);
+$db->setAttribute(PDO::ATTR_ERRMODE,
+                 PDO::ERRMODE_EXCEPTION);
+$result = $db->query('SELECT * FROM data WHERE manuel = 1 ORDER BY key DESC LIMIT 1 ');
+
+
+   $manuel .= '';
+    foreach($result as $row) {
+    	$manuel = "Neue Sender ID: ";
+      $manuel .= $row['sender_id'];
+      $manuel .= " Channel ID: ";
+      $manuel .=$row['channel_id'];
+                      }
+   // $weather_out = "<ul class=\"buttonlist\">{$weather_out}</ul>";
+
+$db = null;	
+  	
+  $scr = '<script>';
+$scr .= 'alert("'.$manuel.'")';
+$scr .= '</script>';
+  };
+    $this->app->Tpl->Set('SCRIPT2', $scr);
     // ### Scheduler ###
     $schedules = ParseSchedules($data);
     $schedule_table = '';
@@ -175,7 +200,7 @@ $weater_table = $e->getMessage();
   {
 
 try {
-$db = new PDO('sqlite:/var/www/liteadmin/weather');
+$db = new PDO($this->app->Conf->DB_FILE);
 $db->setAttribute(PDO::ATTR_ERRMODE,
                   PDO::ERRMODE_EXCEPTION);
 $places = $db->query('SELECT * FROM location');

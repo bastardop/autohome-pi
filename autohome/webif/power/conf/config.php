@@ -16,6 +16,8 @@ class Config
     $this->DB_USER = '';
     $this->DB_PASSWORD = '';
     $this->DB_DATABASE = '';  
+    //SQLite DB File
+    $this->DB_FILE = 'sqlite:/var/www/liteadmin/weather';
 
     // Template-Engine
     $this->TPL_DIR = './pages/';

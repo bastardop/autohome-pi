@@ -30,6 +30,7 @@ switch($action) {
 			Send("delsocket:$socket");
 	break;
 
+
 	/* ------------------- Gpio ------------------- */
 
 	case 'setgpio':
@@ -53,6 +54,49 @@ switch($action) {
 	
 		if($gpio != '')
       Send("delgpio:$gpio");
+	break;
+
+/* ------------------- Wetter ------------------- */
+
+	case 'setwetter':
+		$gpio = Get('gpio');
+    $status = Get('status');
+
+		if($gpio != '' && $status != '')
+      Send("setgpio:$gpio:$status");
+	break;	
+case 'newwetter':
+
+break;
+
+
+	case 'addwetter':
+    $name = Get('name');
+    $chan = Get('chan');
+    $sender =GET('sender');
+
+		if($name != '' && $chan != '')
+      $db = new PDO($this->app->Conf->DB_FILE);
+$db->setAttribute(PDO::ATTR_ERRMODE,
+                 PDO::ERRMODE_EXCEPTION);
+                 $exec='INSERT INTO location ("key","name","sender_id","channel_id") VALUES (NULL,"'.$name.'","'.$sender.'","'.$chan.'")';
+$db->exec($exec);
+$db = null;
+
+	break;
+
+	case 'deletewetter':
+    $name = Get('name');
+	
+			
+$db = new PDO($this->app->Conf->DB_FILE);
+$db->setAttribute(PDO::ATTR_ERRMODE,
+                 PDO::ERRMODE_EXCEPTION);
+                 $exec='DELETE FROM location WHERE name = "'.$name.'"';
+$db->exec($exec);
+$db = null;
+	
+     
 	break;
 
 	/* ------------------- Schedule ------------------- */
